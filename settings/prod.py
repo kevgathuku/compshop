@@ -5,8 +5,6 @@ from .base import *
 
 DEBUG = False
 
-TEMPLATE_DEBUG = DEBUG
-
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 ALLOWED_HOSTS = ['*']
@@ -27,3 +25,20 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'debug': False,
+        },
+    },
+]
