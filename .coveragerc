@@ -1,0 +1,8 @@
+[report]
+omit = */migrations/*
+
+# Regexes for lines to exclude from consideration
+exclude_lines = def __str__
+
+[run]
+source = store
