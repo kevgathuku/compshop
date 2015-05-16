@@ -30,7 +30,7 @@ class Specification(models.Model):
 class Image(models.Model):
     """Represents an Image associated with the Product"""
 
-    photo = models.ImageField(upload_to='/%Y-%m-%d/')
+    photo = models.ImageField(upload_to='%Y-%m-%d/')
     product = models.ForeignKey(Product, related_name='images')
 
     def __str__(self):
