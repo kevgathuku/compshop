@@ -32,9 +32,14 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'django_extensions',
-    )
+    'taggit',
+)
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
+CUSTOM_APPS = (
+    'store',
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 
 MIDDLEWARE_CLASSES = (
@@ -98,3 +103,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Uploads
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+MEDIA_URL = '/media/'
