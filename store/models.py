@@ -11,6 +11,7 @@ class Product(models.Model):
     price = models.IntegerField()
     misc = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
+    added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
