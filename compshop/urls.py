@@ -22,5 +22,5 @@ from store.views import ProductList
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', ProductList.as_view()),
+    url(r'^$', ProductList.as_view(), name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
