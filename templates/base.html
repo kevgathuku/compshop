@@ -33,7 +33,7 @@
           <!-- Search Form -->
             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
               <div class="well">
-                    <form action="index.html">
+                    <form action="{% url 'home' %}">
                         <div class="input-group">
                             <input type="text" class="form-control input-search" placeholder="Enter something to search"/>
                             <span class="input-group-btn">
@@ -93,8 +93,8 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                    <li><a href="{% url 'catalogue' %}">Catalogue</a></li>
                     <li><a href="cart.html">Shopping Cart</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                     <li class="nav-dropdown">
