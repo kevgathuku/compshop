@@ -4,7 +4,7 @@ from .models import Image, Product, Review, Specification
 
 
 class ImageInline(admin.StackedInline):
-    model = Image
+    model = Image.product.through
 
 
 class SpecificationInline(admin.StackedInline):
