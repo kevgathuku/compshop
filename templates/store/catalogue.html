@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block title %} Catalogue {% endblock %}
 
 {% block content %}
@@ -113,7 +115,7 @@
                         <p>{{ product.description }}</p>
                         <p>
                         	<div class="btn-group">
-	                        	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">Ksh {{ product.price }}</a>
+	                        	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">Ksh {{ product.price|intcomma }}</a>
                         	</div>
                         </p>
 	                    </div>

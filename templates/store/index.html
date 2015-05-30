@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load humanize static %}
 
 {% block title %} Home {% endblock %}
 
@@ -169,7 +169,7 @@
                       <p>
                       	<div class="btn-group">
                         	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">
-                          Ksh {{product.price}}</a>
+                          Ksh {{product.price|intcomma}}</a>
                       	</div>
                       </p>
                     </div>
