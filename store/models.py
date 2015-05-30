@@ -12,6 +12,7 @@ class Product(models.Model):
     misc = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
     added = models.DateTimeField(auto_now_add=True)
+    featured = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
