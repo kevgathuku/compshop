@@ -26,4 +26,5 @@ class ProductDetail(DetailView):
         context = super(ProductDetail, self).get_context_data(**kwargs)
         context['images'] = self.object.images.all()
         context['main_image'] = self.object.images.first()
+        context['specs'] = self.object.specs.all()
         return context

@@ -1,6 +1,4 @@
-{% load static %}
-
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -178,18 +176,14 @@
     <a href="index.html#top" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false">
       <i class="fa fa-angle-double-up"></i>
     </a>
-
     {% block footer_links %}
-
       <script src="{% static "js/jquery.js" %}"></script>
       <script src="{% static "js/bootstrap.js" %}"></script>
       <script src="{% static "js/jquery.bxslider.min.js" %}"></script>
       <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
       <script src="{% static "js/mimity.js" %}"></script>
-
     {% endblock footer_links %}
 
   {% endblock footer %}
-
 </body>
 </html>

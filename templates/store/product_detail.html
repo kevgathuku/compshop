@@ -162,8 +162,8 @@
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#desc" data-toggle="tab">Description</a></li>
-								<li><a href="#detail" data-toggle="tab">Detail</a></li>
-								<li><a href="#review" data-toggle="tab">Review</a></li>
+								<li><a href="#detail" data-toggle="tab">Details</a></li>
+								<li><a href="#review" data-toggle="tab">Reviews</a></li>
 							</ul>
 
 							<!-- Tab panes -->
@@ -175,24 +175,16 @@
 								</div>
 								<div class="tab-pane" id="detail">
 									<div class="well">
-										<table class="table table-bordered">
-											<tbody>
-												<tr>
-													<td width="40%">Lorem</td>
-													<td>Ipsum</td>
-												</tr>
-												<tr>
-													<td>Dolor</td>
-													<td>Sit Amet</td>
-												</tr>
-											</tbody>
-										</table>
+											{% for spec in specs %}
+												<h4>{{spec.title}}</h4>
+												<p>{{spec.details|linebreaksbr}}</p>
+											{% endfor %}
 									</div>
 								</div>
 								<div class="tab-pane" id="review">
 									<div class="well">
 										<div class="media">
-											<a class="pull-left" href="detail.html#">
+											<a class="pull-left" href="#">
 												<img class="media-object" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
