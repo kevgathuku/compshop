@@ -122,6 +122,7 @@
 
   {% endblock %}
 
+  {% block footer %}
     <footer>
       <div class="container">
           <div class="col-lg-3 col-md-3 col-sm-6">
@@ -178,10 +179,17 @@
       <i class="fa fa-angle-double-up"></i>
     </a>
 
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/bootstrap.js" %}"></script>
-    <script src="{% static "js/jquery.bxslider.min.js" %}"></script>
-    <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
-    <script src="{% static "js/mimity.js" %}"></script>
+    {% block footer_links %}
+
+      <script src="{% static "js/jquery.js" %}"></script>
+      <script src="{% static "js/bootstrap.js" %}"></script>
+      <script src="{% static "js/jquery.bxslider.min.js" %}"></script>
+      <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
+      <script src="{% static "js/mimity.js" %}"></script>
+
+    {% endblock footer_links %}
+
+  {% endblock footer %}
+
 </body>
 </html>
