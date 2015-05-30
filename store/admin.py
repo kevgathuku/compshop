@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'price',
+        'featured',
     )
     inlines = [ImageInline, SpecificationInline, ]
     search_fields = ['name', 'description',]
