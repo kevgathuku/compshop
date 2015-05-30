@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Product
 
@@ -11,3 +11,8 @@ class ProductList(ListView):
 class ProductCatalogue(ListView):
     model = Product
     template_name = 'store/catalogue.html'
+
+
+class ProductDetail(DetailView):
+    model = Product
+    pk_url_kwarg = 'product_id'
