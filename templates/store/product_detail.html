@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %} Product Detail {% endblock %}
 
 {% block content %}
@@ -23,7 +25,7 @@
 		                        <p>
 		                        	<div class="btn-group">
 			                        	<a href="detail.html#" class="btn btn-default">$ 528.96</a>
-			                        	<a href="detail.html#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+			                        	
 		                        	</div>
 		                        </p>
 		                    </div>
@@ -38,7 +40,7 @@
 		                        <p>
 		                        	<div class="btn-group">
 			                        	<a href="detail.html#" class="btn btn-default">$ 924.25</a>
-			                        	<a href="detail.html#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+			                        	
 		                        	</div>
 		                        </p>
 		                    </div>
@@ -53,7 +55,7 @@
 			<!-- Product Detail -->
         	<div class="col-lg-9 col-md-9 col-sm-12">
         		<div class="col-lg-12 col-sm-12">
-            		<span class="title">Live Nation 3 Days of Peace and Music Carbon</span>
+            		<span class="title">{{object.name}}</span>
             	</div>
 	            <div class="col-lg-12 col-sm-12 hero-feature">
 
@@ -61,34 +63,22 @@
 						<div class="col-lg-6 col-md-6 col-sm-6">
 			            	<!-- Main Image -->
 							<div class="product-main-image-container">
-								<img src="images/loader.gif" alt="" class="product-loader">
+								<img src="{% static "images/loader.gif" %}" alt="" class="product-loader">
 								<span class="thumbnail product-main-image">
-									<img src="images/detail1.jpg" alt="">
+									<img src="{{ main_image.photo.url }}" alt="">
 								</span>
 							</div>
 							<!-- End Main Image -->
 
 							<!-- Thumbnail Image -->
-							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail1.jpg" class="thumbnail">
-									<img src="images/detail1.jpg" alt="">
-								</a>
-							</div>
-							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail2.jpg" class="thumbnail">
-									<img src="images/detail2.jpg" alt="">
-								</a>
-							</div>
-							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail3.jpg" class="thumbnail">
-									<img src="images/detail3.jpg" alt="">
-								</a>
-							</div>
-							<div class="col-xs-3 product-thumb-image">
-								<a href="images/detail1.jpg" class="thumbnail">
-									<img src="images/detail1.jpg" alt="">
-								</a>
-							</div>
+              {% for image in images %}
+  							<div class="col-xs-3 product-thumb-image">
+  								<a href="{{ image.photo.url }}" class="thumbnail">
+  									<img src="{{ image.photo.url }}" alt="">
+  								</a>
+  							</div>
+              {% endfor %}
+
 							<!-- End Thumbnail Image -->
 						</div>
 
@@ -102,7 +92,7 @@
 									<div class="the-list">
 										<h3 class="col-xs-12">
 											<!-- <span class="price-old">$169</span> -->
-											$428.96
+											Ksh {{object.price}}
 										</h3>
 									</div>
 									<div class="the-list">
@@ -180,7 +170,7 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="desc">
 									<div class="well">
-										<p>Actually this part of clothes is very unique and original. It is a way of self-expression because nowadays making some logo or phrase has become very popular. Obviously the T-shirts are the part of modern culture and they have a great influence on teens because of their freedom and epatage. We are offering you our unique and original products. </p>
+										<p> {{object.description|linebreaksbr}} </p>
 									</div>
 								</div>
 								<div class="tab-pane" id="detail">
@@ -288,7 +278,7 @@
 	                        <p>
 	                        	<div class="btn-group">
 		                        	<a href="detail.html#" class="btn btn-default">$ 22.22</a>
-		                        	<a href="detail.html#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+		                        	
 	                        	</div>
 	                        </p>
 	                    </div>
@@ -305,7 +295,7 @@
 	                        <p>
 	                        	<div class="btn-group">
 	                        		<a href="detail.html#" class="btn btn-default">$ 15.47</a>
-	                        		<a href="detail.html#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+	                        		
 	                        	</div>
 	                        </p>
 	                    </div>
@@ -322,7 +312,7 @@
 	                        <p>
 	                        	<div class="btn-group">
 	                        		<a href="detail.html#" class="btn btn-default">$ 20.63</a>
-	                        		<a href="detail.html#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+	                        		
 	                        	</div>
 	                        </p>
 	                    </div>
@@ -330,7 +320,6 @@
 	            </div>
         	</div>
         	<!-- End Product Detail -->
-
 
         </div>
 	</div>
