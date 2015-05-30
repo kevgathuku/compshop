@@ -109,11 +109,11 @@
 	                    	<img src="{{ product.images.first.photo.url }}" alt="">
 	                	</a>
 	                    <div class="caption prod-caption">
-                        <h4><a href="detail.html">{{ product.name }}</a></h4>
+                        <h4><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h4>
                         <p>{{ product.description }}</p>
                         <p>
                         	<div class="btn-group">
-	                        	<a href="catalogue.html#" class="btn btn-default">Ksh {{ product.price }}</a>
+	                        	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">Ksh {{ product.price }}</a>
                         	</div>
                         </p>
 	                    </div>
