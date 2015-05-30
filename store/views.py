@@ -7,6 +7,11 @@ class ProductList(ListView):
     model = Product
     template_name = 'store/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductList, self).get_context_data(**kwargs)
+        context['featured'] = Product.objects.filter(featured=True)[:6]
+        return context
+
 
 class ProductCatalogue(ListView):
     model = Product
