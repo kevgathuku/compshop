@@ -23,6 +23,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     fields = ['product', 'name', 'title', 'rating', 'text']
+    list_display = ('name','title','product','rating',)
 
 admin.site.register(Image)
 admin.site.register(Product, ProductAdmin)
