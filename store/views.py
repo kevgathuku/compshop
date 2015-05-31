@@ -27,4 +27,5 @@ class ProductDetail(DetailView):
         context['images'] = self.object.images.all()
         context['main_image'] = self.object.images.first()
         context['specs'] = self.object.specs.all()
+        context['reviews'] =self.object.reviews.all()
         return context

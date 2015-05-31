@@ -183,8 +183,9 @@
 								</div>
 								<div class="tab-pane" id="review">
 									<div class="well">
+									{% for review in reviews %}
 										<div class="media">
-											<a class="pull-left" href="#">
+											<span class="pull-left">
 												<img class="media-object" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
@@ -193,52 +194,37 @@
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star-half-o"></i>
 												</div>
-											</a>
+											</span>
 											<div class="media-body">
-												<h5 class="media-heading"><strong>John Thor</strong></h5>
-												Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+												<h5 class="media-heading"><strong>{{review.name}}</strong></h5>
+												{{review.text}}
 											</div>
 										</div>
-										<div class="media">
-											<a class="pull-left" href="detail.html#">
-												<img class="media-object" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-o"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-											</a>
-											<div class="media-body">
-												<h5 class="media-heading"><strong>Michael</strong></h5>
-												Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-											</div>
-										</div>
+									{% endfor %}
 										<hr/>
-		                                <h4>Add your review</h4>
-		                                <p></p>
-		                                <form role="form">
-		                                    <div class="form-group">
-		                                        <input type="text" class="form-control" placeholder="Name">
-		                                    </div>
-		                                    <div class="form-group">
-		                                        <input type="text" class="form-control" placeholder="Email">
-		                                    </div>
-		                                    <div class="form-group">
-		                                        <select class="form-control">
-		                                            <option>1 star</option>
-		                                            <option>2 stars</option>
-		                                            <option>3 stars</option>
-		                                            <option>4 stars</option>
-		                                            <option>5 stars</option>
-		                                        </select>
-		                                    </div>
-		                                    <div class="form-group">
-		                                        <textarea class="form-control" rows="5" placeholder="Your Review"></textarea>
-		                                    </div>
-		                                    <button type="submit" class="btn btn-default">Submit Review</button>
-		                                </form>
+                    <h4>Add your review</h4>
+                    <p></p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>1 star</option>
+                                <option>2 stars</option>
+                                <option>3 stars</option>
+                                <option>4 stars</option>
+                                <option>5 stars</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" placeholder="Your Review"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit Review</button>
+                    </form>
 									</div>
 								</div>
 							</div>

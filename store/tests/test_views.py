@@ -50,3 +50,12 @@ class ProductDetailTest(TestCase):
         response = self.client.get(reverse('products:detail', args=[product.id]))
 
         self.assertTemplateUsed(response, 'store/product_detail.html')
+
+    def test_product_reviews_are_rendered(self):
+        product = ProductFactory.create()
+        review = ReviewFactory.create(product=product)
+
+        response = self.client.get(reverse('products:detail', args=[product.id]))
+
+        self.assertContains(response, review.name)
+        self.assertContains(response, review.text)
