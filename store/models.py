@@ -8,9 +8,11 @@ class Product(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()
     misc = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
+    added = models.DateTimeField(auto_now_add=True)
+    featured = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -31,7 +33,7 @@ class Image(models.Model):
     """Represents an Image associated with the Product"""
 
     photo = models.ImageField(upload_to='%Y-%m-%d/')
-    product = models.ForeignKey(Product, related_name='images')
+    product = models.ManyToManyField(Product, related_name='images')
 
     def __str__(self):
         return self.photo.name
@@ -50,7 +52,7 @@ class Review(models.Model):
 
     name = models.CharField(max_length=30)
     title = models.CharField(max_length=50)
-    rating = models.IntegerField(choices=RATINGS_CHOICES)
+    rating = models.PositiveSmallIntegerField(choices=RATINGS_CHOICES)
     text = models.TextField()
     product = models.ForeignKey(Product, related_name='reviews')
 

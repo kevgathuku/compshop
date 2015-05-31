@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %} Catalogue {% endblock %}
+
+{% block content %}
+
+    <div class="container main-container">
+        <div class="row">
+        	<div class="col-lg-3 col-md-3 col-sm-12">
+
+        		<!-- Categories -->
+        		<div class="col-lg-12 col-md-12 col-sm-6">
+	        		<div class="no-padding">
+	            		<span class="title">CATEGORIES</span>
+	            	</div>
+
+					   <div id="main_menu">
+              <div class="list-group panel panel-cat">
+                  <a href="catalogue.html#sub1" class="list-group-item" data-toggle="collapse" data-parent="#main_menu">Cras justo odio <i class="fa fa-caret-down pull-right"></i></a>
+                  <div class="collapse list-group-sub" id="sub1">
+                      <a href="catalogue.html#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
+                      <div class="collapse list-group-submenu" id="SubMenu1">
+                        <a href="catalogue.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+                        <a href="catalogue.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+                        <a href="catalogue.html#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+                        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                            <a href="catalogue.html#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+                            <a href="catalogue.html#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+                        </div>
+                        <a href="catalogue.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+                      </div>
+                      <a href="javascript:;" class="list-group-item">Subitem 2</a>
+                      <a href="javascript:;" class="list-group-item">Subitem 3</a>
+                  </div>
+                  <a href="catalogue.html#" class="list-group-item" >Dapibus ac facilisis in</a>
+                  <a href="catalogue.html#sub2" class="list-group-item" data-toggle="collapse" data-parent="#main_menu">Porta ac consectetur ac <i class="fa fa-caret-down pull-right"></i></a>
+                  <div class="collapse list-group-sub" id="sub2">
+                      <a href="catalogue.html" class="list-group-item">Subitem 1</a>
+                      <a href="catalogue.html" class="list-group-item">Subitem 2</a>
+                      <a href="catalogue.html" class="list-group-item">Subitem 3</a>
+                  </div>
+                  <a href="catalogue.html#" class="list-group-item" >Vestibulum at eros</a>
+                  <a href="catalogue.html#" class="list-group-item" >Porta ac consectetur ac</a>
+                  <a href="catalogue.html#" class="list-group-item" >Cras justo odio</a>
+                  <a href="catalogue.html#" class="list-group-item" >Dapibus ac facilisis in</a>
+                  <a href="catalogue.html#" class="list-group-item" >Porta ac consectetur ac</a>
+                  <a href="catalogue.html#" class="list-group-item" >Vestibulum at eros</a>
+                  <a href="catalogue.html#" class="list-group-item" >Porta ac consectetur ac</a>
+              </div>
+          </div>
+				</div>
+				<!-- End Categories -->
+
+				<!-- Best Seller -->
+				<div class="col-lg-12 col-md-12 col-sm-6">
+					<div class="no-padding">
+	            <span class="title">BEST SELLER</span>
+	         </div>
+            <div class="hero-feature">
+                <div class="thumbnail text-center">
+                	<a href="detail.html" class="link-p">
+                    	<img src="images/product-9.jpg" alt="">
+                	</a>
+                    <div class="caption prod-caption">
+                        <h4><a href="detail.html">Ohio State College T-Shirt</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, minima!</p>
+                        <p>
+                        	<div class="btn-group">
+	                        	<a href="catalogue.html#" class="btn btn-default">$ 924.25</a>                       	
+                        	</div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+					<div class="hero-feature hidden-sm">
+                <div class="thumbnail text-center">
+                	<a href="detail.html" class="link-p">
+                    	<img src="images/product-8.jpg" alt="">
+                	</a>
+                    <div class="caption prod-caption">
+                        <h4><a href="detail.html">Penn State College T-Shirt</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, minima!</p>
+                        <p>
+                        	<div class="btn-group">
+	                        	<a href="catalogue.html#" class="btn btn-default">$ 528.96</a>
+                        	</div>
+                        </p>
+                    </div>
+                </div>
+		        </div>
+				</div>
+				<!-- End Best Seller -->
+
+        	</div>
+
+        	<div class="clearfix visible-sm"></div>
+
+			<!-- Catalogue -->
+        	<div class="col-lg-9 col-md-9 col-sm-12">
+        		<div class="col-lg-12 col-sm-12">
+            		<span class="title">PRODUCTS CATALOGUE</span>
+            	</div>
+
+          {% for product in product_list %}
+
+	            <div class="col-lg-4 col-sm-4 hero-feature text-center">
+	                <div class="thumbnail">
+	                	<a href="{% url 'products:detail' product.id %}" class="link-p">
+	                    	<img src="{{ product.images.first.photo.url }}" alt="">
+	                	</a>
+	                    <div class="caption prod-caption">
+                        <h4><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h4>
+                        <p>{{ product.description }}</p>
+                        <p>
+                        	<div class="btn-group">
+	                        	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">Ksh {{ product.price|intcomma }}</a>
+                        	</div>
+                        </p>
+	                    </div>
+	                </div>
+	            </div>
+
+          {% endfor %}
+
+        {# TODO: Fix pagination appearing on center #}
+				<div class="text-center">
+		      <ul class="pagination catalogue-pagination">
+						<li class="disabled"><a>First</a></li>
+						<li class="disabled"><a>Prev</a></li>
+						<li class="active"><a href="catalogue.html#">1</a></li>
+						<li><a href="catalogue.html#">2</a></li>
+						<li><a href="catalogue.html#">3</a></li>
+						<li><a href="catalogue.html#">4</a></li>
+						<li><a href="catalogue.html#">Next</a></li>
+						<li><a href="catalogue.html#">Last</a></li>
+					</ul>
+				</div>
+        	</div>
+        	<!-- End Catalogue -->
+
+
+        </div>
+	</div>
+{% endblock %}

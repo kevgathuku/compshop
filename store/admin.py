@@ -4,7 +4,7 @@ from .models import Image, Product, Review, Specification
 
 
 class ImageInline(admin.StackedInline):
-    model = Image
+    model = Image.product.through
 
 
 class SpecificationInline(admin.StackedInline):
@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'price',
+        'featured',
     )
     inlines = [ImageInline, SpecificationInline, ]
     search_fields = ['name', 'description',]
