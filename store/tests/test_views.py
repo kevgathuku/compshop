@@ -1,7 +1,7 @@
 from django.core.urlresolvers import resolve, reverse
 from django.test import TestCase
 
-from store.views import ProductDisplay
+from store.views import ProductDetail
 from .factories import *
 
 
@@ -31,7 +31,7 @@ class ProductListTest(TestCase):
         self.assertNotContains(response, unfeatured.name)
 
 
-class ProductDisplayTest(TestCase):
+class ProductDetailTest(TestCase):
     """Test for Individual Product Detail View"""
 
     def test_post_url_resolves_to_correct_view(self):
@@ -42,7 +42,7 @@ class ProductDisplayTest(TestCase):
 
         self.assertEqual(
             response.func.__name__,
-            ProductDisplay.as_view().__name__)
+            ProductDetail.as_view().__name__)
 
     def test_uses_product_detail_template(self):
         product = ProductFactory.create()

@@ -1,7 +1,11 @@
+from django.core.urlresolvers import reverse
+from django.http import Http404
+from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
+from django.views.generic.detail import SingleObjectMixin
 
 from .forms import ReviewForm
-from .models import Product
+from .models import Product, Review
 
 
 class ProductList(ListView):
@@ -19,7 +23,7 @@ class ProductCatalogue(ListView):
     template_name = 'store/catalogue.html'
 
 
-class ProductDisplay(DetailView):
+class ProductDetail(DetailView):
     model = Product
     pk_url_kwarg = 'product_id'
 
@@ -31,3 +35,16 @@ class ProductDisplay(DetailView):
         context['reviews'] =self.object.reviews.all()
         context['form'] = ReviewForm()
         return context
+
+
+def product_review(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.save()
+            # redirect to a new URL:
+            return redirect('/thanks/')
+    else:
+        raise Http404
