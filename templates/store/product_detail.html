@@ -208,7 +208,7 @@
 										<hr/>
                     <h4>Add your review</h4>
                     <p></p>
-                    <form role="form" method="post">
+                    <form role="form" method="post" action="{% url 'products:review' %}">
                     	{% csrf_token %}
                     		{# product is a hidden field #}
                     		{{form.product}}
