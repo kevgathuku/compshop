@@ -15,7 +15,7 @@ class ReviewForm(forms.models.ModelForm):
 
     class Meta:
         model = Review
-        fields = ['title', 'rating', 'text']
+        fields = ['title', 'rating', 'text','product']
         widgets = {
             'title': forms.fields.TextInput(
                 attrs={
