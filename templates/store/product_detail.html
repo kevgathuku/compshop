@@ -210,6 +210,8 @@
                     <p></p>
                     <form role="form" method="post">
                     	{% csrf_token %}
+                    		{# product is a hidden field #}
+                    		{{form.product}}
                         <div class="form-group">
                             {{ form.name }}
                         </div>

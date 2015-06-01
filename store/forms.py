@@ -28,4 +28,5 @@ class ReviewForm(forms.models.ModelForm):
                     'class': 'form-control',
                     'rows': 5,
                     }),
+            'product': forms.HiddenInput(),
         }

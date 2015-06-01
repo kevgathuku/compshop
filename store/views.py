@@ -28,12 +28,12 @@ class ProductDetail(DetailView):
     pk_url_kwarg = 'product_id'
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDisplay, self).get_context_data(**kwargs)
+        context = super(ProductDetail, self).get_context_data(**kwargs)
         context['images'] = self.object.images.all()
         context['main_image'] = self.object.images.first()
         context['specs'] = self.object.specs.all()
         context['reviews'] =self.object.reviews.all()
-        context['form'] = ReviewForm()
+        context['form'] = ReviewForm(initial={'product': self.object})
         return context
 
 
@@ -43,8 +43,11 @@ def product_review(request):
         form = ReviewForm(request.POST)
         if form.is_valid():
             # process the data in form.cleaned_data as required
+            product = form.cleaned_data['product']
             form.save()
             # redirect to a new URL:
-            return redirect('/thanks/')
+            return redirect(
+                reverse('product:detail'),
+                kwargs={'product_id': product})
     else:
         raise Http404
