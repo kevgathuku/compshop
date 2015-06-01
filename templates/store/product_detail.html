@@ -203,21 +203,18 @@
 										<hr/>
                     <h4>Add your review</h4>
                     <p></p>
-                    <form role="form">
+                    <form role="form" method="post">
+                    	{% csrf_token %}
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name">
+                            {# <input type="text" class="form-control" placeholder="Name"> #}
+                            {{ form.name }}
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Short Summary">
+                            {# <input type="text" class="form-control" placeholder="Short Summary"> #}
+                            {{ form.title }}
                         </div>
                         <div class="form-group">
-                            <select class="form-control">
-                                <option>1 star</option>
-                                <option>2 stars</option>
-                                <option>3 stars</option>
-                                <option>4 stars</option>
-                                <option>5 stars</option>
-                            </select>
+                            {{ form.rating }}
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" rows="5" placeholder="Your Review"></textarea>
