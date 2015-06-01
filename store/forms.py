@@ -4,12 +4,14 @@ from .models import Review
 
 
 class ReviewForm(forms.models.ModelForm):
-    name = forms.CharField(max_length=30,
+    name = forms.CharField(
+        max_length=30,
         widget=forms.TextInput(
-                attrs={
-                    'placeholder': 'Your Name',
-                    'class': 'form-control',
-                    }),)
+            attrs={
+                'placeholder': 'Your Name',
+                'class': 'form-control',
+                }),
+        )
 
     class Meta:
         model = Review
@@ -17,11 +19,13 @@ class ReviewForm(forms.models.ModelForm):
         widgets = {
             'title': forms.fields.TextInput(
                 attrs={
-                    'placeholder': 'Short Summary',
+                    'placeholder': 'Short Summary e.g. Awesome Product',
                     'class': 'form-control',
                     }),
-            'rating': forms.fields.Select(
+            'text': forms.Textarea(
                 attrs={
+                    'placeholder': 'Your Review',
                     'class': 'form-control',
+                    'rows': 5,
                     }),
         }
