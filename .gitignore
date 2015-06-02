@@ -64,3 +64,6 @@ target/
 
 # File Uploads
 uploads/
+
+# Collected Static Files
+staticfiles/
