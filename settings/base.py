@@ -116,3 +116,10 @@ STATIC_ROOT = 'staticfiles'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 MEDIA_URL = '/media/'
+
+# Djrill Settings
+MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
+
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+
+DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
