@@ -1,5 +1,7 @@
 import os
 
+import dj_database_url
+
 from .base import *
 
 
@@ -15,16 +17,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'compshop_production',
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': '5432',
-    }
-}
+DATABASES['default'] = dj_database_url.config()
 
 TEMPLATES = [
     {
