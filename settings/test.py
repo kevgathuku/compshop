@@ -1,5 +1,7 @@
 import os
 
+import dj_database_url
+
 from .base import *
 
 INSTALLED_APPS += ("django_nose",)
@@ -7,6 +9,8 @@ INSTALLED_APPS += ("django_nose",)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 DEBUG = True
+
+DATABASES['default'] = dj_database_url.config()
 
 TEMPLATES = [
     {
@@ -25,4 +29,4 @@ TEMPLATES = [
     },
 ]
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'TESTing SecRet KeY'
