@@ -1,0 +1,25 @@
+language: python
+services:
+- postgresql
+env:
+- DATABASE_URL='postgres://postgres:@localhost:5432/compshop_test' DJANGO_SETTINGS_MODULE='settings.test'
+python:
+- '3.4'
+addons:
+  postgresql: '9.4'
+install:
+- pip install -r requirements/testing.txt
+before_script:
+- psql -c 'create database compshop_test;' -U postgres
+- python manage.py migrate --noinput
+- python manage.py collectstatic --noinput
+script:
+- make test
+deploy:
+  provider: heroku
+  api_key:
+    secure: j7AFGEPl1uHAj3cfdw7X51QYxjbU9FZ8fOEOW37KHZtfEC7ZJIpYL9hk4mWW+MV6d4Ztf1yWqAz6Wd4kOi3+Zcy4qb7LDwYHuxoCd5egTd2GiTihD3s4besvQAbU6RKJrnr0nOd7OMKPh29VulXz0fmMEhQBRxJLFkV9B53RIx8=
+  app: comptronics
+  on:
+    repo: kevgathuku/compshop
+    branch: develop
