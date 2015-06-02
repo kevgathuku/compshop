@@ -1,7 +1,7 @@
 from django.core.urlresolvers import resolve, reverse
 from django.test import TestCase
 
-from store.views import ProductDetail
+from store.views import ProductDetail, product_review
 from .factories import *
 
 
@@ -50,3 +50,25 @@ class ProductDetailTest(TestCase):
         response = self.client.get(reverse('products:detail', args=[product.id]))
 
         self.assertTemplateUsed(response, 'store/product_detail.html')
+
+    def test_product_reviews_are_rendered(self):
+        product = ProductFactory.create()
+        review = ReviewFactory.create(product=product)
+
+        response = self.client.get(reverse('products:detail', args=[product.id]))
+
+        self.assertContains(response, review.name)
+        self.assertContains(response, review.text)
+
+
+class ProductReviewTest(TestCase):
+    """Test for Individual Product Reviews"""
+
+    def test_product_review_url_resolves_to_correct_view(self):
+        response = resolve(reverse('products:review'))
+        self.assertEqual(response.func, product_review)
+
+    def test_product_review_url_handles_POST_requests_only(self):
+        response = self.client.get(reverse('products:review'))
+
+        self.assertEqual(response.status_code, 404)

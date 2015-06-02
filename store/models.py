@@ -50,11 +50,11 @@ class Review(models.Model):
         (5, '5 Stars'),
     )
 
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, blank=True, default='Anonymous')
     title = models.CharField(max_length=50)
-    rating = models.PositiveSmallIntegerField(choices=RATINGS_CHOICES)
+    rating = models.PositiveSmallIntegerField(choices=RATINGS_CHOICES, blank=False)
     text = models.TextField()
     product = models.ForeignKey(Product, related_name='reviews')
 
     def __str__(self):
-        return self.title
+        return '{} star: {}'.format(self.rating, self.title)

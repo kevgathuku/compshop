@@ -1,6 +1,10 @@
+from django.core.urlresolvers import reverse
+from django.http import Http404
+from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
-from .models import Product
+from .forms import ReviewForm
+from .models import Product, Review
 
 
 class ProductList(ListView):
@@ -27,4 +31,21 @@ class ProductDetail(DetailView):
         context['images'] = self.object.images.all()
         context['main_image'] = self.object.images.first()
         context['specs'] = self.object.specs.all()
+        context['reviews'] = self.object.reviews.all()
+        context['form'] = ReviewForm(initial={'product': self.object})
         return context
+
+
+def product_review(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            product = form.cleaned_data['product']
+            form.save()
+            # redirect to a new URL:
+            return redirect(
+                reverse('products:detail', kwargs={'product_id': product.pk}))
+    else:
+        raise Http404

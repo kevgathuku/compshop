@@ -6,10 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %} {% endblock %} - Mimity </title>
+  {% block head_css %}
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
     <link href="{% static "css/jquery.bxslider.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
+  {% endblock %}
 </head>
 
 <body>
