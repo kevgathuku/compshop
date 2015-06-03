@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Image, Product, Review, Specification
+from .models import Category, Image, Product, Review, Specification
 
 
 class ImageInline(admin.StackedInline):
@@ -9,10 +9,6 @@ class ImageInline(admin.StackedInline):
 
 class SpecificationInline(admin.StackedInline):
     model = Specification
-
-
-class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("name",)}
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -29,6 +25,7 @@ class ReviewAdmin(admin.ModelAdmin):
     fields = ['product', 'name', 'title', 'rating', 'text']
     list_display = ('name','title','product','rating',)
 
+admin.site.register(Category)
 admin.site.register(Image)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Review, ReviewAdmin)

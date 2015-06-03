@@ -1,5 +1,6 @@
 from django.db import models
 
+from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 
 
@@ -7,7 +8,7 @@ class Category(models.Model):
     """Represents the Category of a Product on Sale"""
 
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(populate_from='name', unique=True)
 
     def __str__(self):
         return self.name

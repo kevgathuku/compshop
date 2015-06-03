@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import autoslug.fields
 
 
 class Migration(migrations.Migration):
@@ -14,9 +15,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=100)),
-                ('slug', models.SlugField(unique=True)),
+                ('slug', autoslug.fields.AutoSlugField(populate_from='name', editable=False, unique=True)),
             ],
         ),
     ]
