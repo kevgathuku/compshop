@@ -4,8 +4,11 @@ from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
 from .forms import ReviewForm
-from .models import Product, Review
+from .models import Category, Product, Review
 
+
+class CategoryDetail(DetailView):
+    model = Category
 
 class ProductList(ListView):
     model = Product

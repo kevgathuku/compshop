@@ -1,8 +1,28 @@
 from django.core.urlresolvers import resolve, reverse
 from django.test import TestCase
 
-from store.views import ProductDetail, product_review
+from store.views import CategoryDetail, ProductDetail, product_review
 from .factories import *
+
+
+class CategoryTest(TestCase):
+    """Basic Category Tests"""
+
+    def test_category_absolute_url(self):
+        cat1 = CategoryFactory.create()
+
+        self.assertEqual(
+            cat1.get_absolute_url(),
+            '/category/{}/'.format(cat1.slug,))
+
+    def test_category_url_resolves_to_correct_view(self):
+        cat1 = CategoryFactory.create()
+
+        response = resolve(reverse('category', kwargs={'slug': cat1.slug}))
+
+        self.assertEqual(
+            response.func.__name__,
+            CategoryDetail.as_view().__name__)
 
 
 class ProductListTest(TestCase):

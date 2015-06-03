@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from autoslug import AutoSlugField
@@ -12,6 +13,9 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+
+    def get_absolute_url(self):
+        return reverse('category', args=[str(self.slug)])
 
     def __str__(self):
         return self.name
