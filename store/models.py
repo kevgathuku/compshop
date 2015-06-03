@@ -17,9 +17,19 @@ class Category(models.Model):
 class Product(models.Model):
     """Represents an Individual Product on Sale"""
 
+    def category_default():
+        obj, created = Category.objects.get_or_create(name='Laptops')
+        return obj.id
+
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.PositiveIntegerField()
+
+    category = models.ForeignKey(
+        Category,
+        related_name='products',
+        default=category_default)
+
     misc = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
     added = models.DateTimeField(auto_now_add=True)
