@@ -124,12 +124,26 @@ class ProductDetailTest(TestCase):
         response = self.client.get(
             reverse('products:detail', args=[products[0].id]))
 
+        self.assertNotIn(products[0], response.context['related'])
         self.assertEqual(
             len(response.context['related']),
             3,
             "Only 3 related products should be passed in the context")
         for item in response.context['related']:
             self.assertIn(item, products)
+
+    def test_related_products_are_displayed(self):
+        products = []
+
+        bulk_cat = CategoryFactory.create()
+        products.extend(ProductFactory.create_batch(4, category=bulk_cat))
+
+        response = self.client.get(
+            reverse('products:detail', args=[products[0].id]))
+
+        for item in products:
+            self.assertContains(response, item.name)
+
 
 class ProductReviewTest(TestCase):
     """Test for Individual Product Reviews"""
