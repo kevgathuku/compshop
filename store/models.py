@@ -1,6 +1,24 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
+from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
+
+
+class Category(models.Model):
+    """Represents the Category of a Product on Sale"""
+
+    name = models.CharField(max_length=100)
+    slug = AutoSlugField(populate_from='name', unique=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def get_absolute_url(self):
+        return reverse('category', args=[str(self.slug)])
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -9,10 +27,18 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.PositiveIntegerField()
-    misc = models.TextField(blank=True)
+    slug = AutoSlugField(populate_from='name', unique=True)
+    category = models.ForeignKey(Category, related_name='products',)
+
+    misc = models.TextField(
+        blank=True,
+        help_text='Additional info about the product')
     tags = TaggableManager(blank=True)
     added = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+        return reverse('products:detail', args=[str(self.slug)])
 
     def __str__(self):
         return self.name

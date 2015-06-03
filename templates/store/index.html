@@ -160,15 +160,15 @@
             {% for product in featured %}
 	            <div class="col-lg-4 col-sm-4 hero-feature text-center">
                 <div class="thumbnail">
-                	<a href="{% url 'products:detail' product.id %}" class="link-p">
+                	<a href="{{ product.get_absolute_url }}" class="link-p">
                     	<img src="{{ product.images.first.photo.url }}" alt="">
                 	</a>
                     <div class="caption prod-caption">
-                      <h4><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h4>
+                      <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
                       <p>{{ product.description }}</p>
                       <p>
                       	<div class="btn-group">
-                        	<a href="{% url 'products:detail' product.id %}" class="btn btn-default">
+                        	<a href="{{ product.get_absolute_url }}" class="btn btn-default">
                           Ksh {{product.price|intcomma}}</a>
                       	</div>
                       </p>

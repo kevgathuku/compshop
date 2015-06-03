@@ -2,21 +2,21 @@
 
 {% load humanize %}
 
-{% block title %} Catalogue {% endblock %}
+{% block title %} {{object.name}} {% endblock %}
 
 {% block content %}
 
     <div class="container main-container">
         <div class="row">
-        	<div class="col-lg-3 col-md-3 col-sm-12">
+          <div class="col-lg-3 col-md-3 col-sm-12">
 
-        		<!-- Categories -->
-        		<div class="col-lg-12 col-md-12 col-sm-6">
-	        		<div class="no-padding">
-	            		<span class="title">CATEGORIES</span>
-	            	</div>
+            <!-- Categories -->
+            <div class="col-lg-12 col-md-12 col-sm-6">
+              <div class="no-padding">
+                  <span class="title">CATEGORIES</span>
+                </div>
 
-					   <div id="main_menu">
+             <div id="main_menu">
               <div class="list-group panel panel-cat">
                   <a href="catalogue.html#sub1" class="list-group-item" data-toggle="collapse" data-parent="#main_menu">Cras justo odio <i class="fa fa-caret-down pull-right"></i></a>
                   <div class="collapse list-group-sub" id="sub1">
@@ -50,97 +50,97 @@
                   <a href="catalogue.html#" class="list-group-item" >Porta ac consectetur ac</a>
               </div>
           </div>
-				</div>
-				<!-- End Categories -->
+        </div>
+        <!-- End Categories -->
 
-				<!-- Best Seller -->
-				<div class="col-lg-12 col-md-12 col-sm-6">
-					<div class="no-padding">
-	            <span class="title">BEST SELLER</span>
-	         </div>
+        <!-- Best Seller -->
+        <div class="col-lg-12 col-md-12 col-sm-6">
+          <div class="no-padding">
+              <span class="title">BEST SELLER</span>
+           </div>
             <div class="hero-feature">
                 <div class="thumbnail text-center">
-                	<a href="detail.html" class="link-p">
-                    	<img src="images/product-9.jpg" alt="">
-                	</a>
+                  <a href="detail.html" class="link-p">
+                      <img src="images/product-9.jpg" alt="">
+                  </a>
                     <div class="caption prod-caption">
                         <h4><a href="detail.html">Ohio State College T-Shirt</a></h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, minima!</p>
                         <p>
-                        	<div class="btn-group">
-	                        	<a href="catalogue.html#" class="btn btn-default">$ 924.25</a>                       	
-                        	</div>
+                          <div class="btn-group">
+                            <a href="catalogue.html#" class="btn btn-default">$ 924.25</a>                        
+                          </div>
                         </p>
                     </div>
                 </div>
             </div>
-					<div class="hero-feature hidden-sm">
+          <div class="hero-feature hidden-sm">
                 <div class="thumbnail text-center">
-                	<a href="detail.html" class="link-p">
-                    	<img src="images/product-8.jpg" alt="">
-                	</a>
+                  <a href="detail.html" class="link-p">
+                      <img src="images/product-8.jpg" alt="">
+                  </a>
                     <div class="caption prod-caption">
                         <h4><a href="detail.html">Penn State College T-Shirt</a></h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, minima!</p>
                         <p>
-                        	<div class="btn-group">
-	                        	<a href="catalogue.html#" class="btn btn-default">$ 528.96</a>
-                        	</div>
+                          <div class="btn-group">
+                            <a href="catalogue.html#" class="btn btn-default">$ 528.96</a>
+                          </div>
                         </p>
                     </div>
                 </div>
-		        </div>
-				</div>
-				<!-- End Best Seller -->
+            </div>
+        </div>
+        <!-- End Best Seller -->
 
-        	</div>
+          </div>
 
-        	<div class="clearfix visible-sm"></div>
+          <div class="clearfix visible-sm"></div>
 
-			<!-- Catalogue -->
-        	<div class="col-lg-9 col-md-9 col-sm-12">
-        		<div class="col-lg-12 col-sm-12">
-            		<span class="title">PRODUCTS CATALOGUE</span>
-            	</div>
+      <!-- Category View -->
+          <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="col-lg-12 col-sm-12">
+                <span class="title"> {{object.name|upper}} CATALOGUE</span>
+              </div>
 
-          {% for product in product_list %}
+          {% for product in object.products.all %}
 
-	            <div class="col-lg-4 col-sm-4 hero-feature text-center">
-	                <div class="thumbnail">
-	                	<a href="{{ product.get_absolute_url }}" class="link-p">
-	                    	<img src="{{ product.images.first.photo.url }}" alt="">
-	                	</a>
-	                    <div class="caption prod-caption">
-                        <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+              <div class="col-lg-4 col-sm-4 hero-feature text-center">
+                  <div class="thumbnail">
+                    <a href="{% url 'products:detail' product.id %}" class="link-p">
+                        <img src="{{ product.images.first.photo.url }}" alt="">
+                    </a>
+                      <div class="caption prod-caption">
+                        <h4><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h4>
                         <p>{{ product.description }}</p>
                         <p>
-                        	<div class="btn-group">
-	                        	<a href="{{ product.get_absolute_url }}" class="btn btn-default">Ksh {{ product.price|intcomma }}</a>
-                        	</div>
+                          <div class="btn-group">
+                            <a href="{% url 'products:detail' product.id %}" class="btn btn-default">Ksh {{ product.price|intcomma }}</a>
+                          </div>
                         </p>
-	                    </div>
-	                </div>
-	            </div>
+                      </div>
+                  </div>
+              </div>
 
           {% endfor %}
 
         {# TODO: Fix pagination appearing on center #}
-				<div class="text-center">
-		      <ul class="pagination catalogue-pagination">
-						<li class="disabled"><a>First</a></li>
-						<li class="disabled"><a>Prev</a></li>
-						<li class="active"><a href="catalogue.html#">1</a></li>
-						<li><a href="catalogue.html#">2</a></li>
-						<li><a href="catalogue.html#">3</a></li>
-						<li><a href="catalogue.html#">4</a></li>
-						<li><a href="catalogue.html#">Next</a></li>
-						<li><a href="catalogue.html#">Last</a></li>
-					</ul>
-				</div>
-        	</div>
-        	<!-- End Catalogue -->
+        <div class="text-center">
+          <ul class="pagination catalogue-pagination">
+            <li class="disabled"><a>First</a></li>
+            <li class="disabled"><a>Prev</a></li>
+            <li class="active"><a href="catalogue.html#">1</a></li>
+            <li><a href="catalogue.html#">2</a></li>
+            <li><a href="catalogue.html#">3</a></li>
+            <li><a href="catalogue.html#">4</a></li>
+            <li><a href="catalogue.html#">Next</a></li>
+            <li><a href="catalogue.html#">Last</a></li>
+          </ul>
+        </div>
+          </div>
+          <!-- End Category View -->
 
 
         </div>
-	</div>
+  </div>
 {% endblock %}

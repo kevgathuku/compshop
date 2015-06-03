@@ -4,7 +4,11 @@ from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
 from .forms import ReviewForm
-from .models import Product, Review
+from .models import Category, Product, Review
+
+
+class CategoryDetail(DetailView):
+    model = Category
 
 
 class ProductList(ListView):
@@ -24,7 +28,6 @@ class ProductCatalogue(ListView):
 
 class ProductDetail(DetailView):
     model = Product
-    pk_url_kwarg = 'product_id'
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetail, self).get_context_data(**kwargs)
@@ -33,6 +36,8 @@ class ProductDetail(DetailView):
         context['specs'] = self.object.specs.all()
         context['reviews'] = self.object.reviews.all()
         context['form'] = ReviewForm(initial={'product': self.object})
+        context['related'] = Product.objects.filter(
+            category=self.object.category).exclude(id__exact=self.object.id)[:3]
         return context
 
 
