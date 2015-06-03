@@ -25,6 +25,37 @@ class CategoryTest(TestCase):
             CategoryDetail.as_view().__name__)
 
 
+class CategoryDisplayTest(TestCase):
+    """Test for the CategoryDetail view"""
+
+    def test_category_view_request_uses_correct_template(self):
+        cat = CategoryFactory.create()
+
+        response = self.client.get(
+            reverse('category', kwargs={'slug': cat.slug}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'store/category_detail.html')
+
+    def test_correct_context_is_passed_to_category_template(self):
+        laptops = CategoryFactory.create()
+        other = CategoryFactory.create()
+
+        comp1 = ProductFactory.create(category=laptops)
+        other_product = ProductFactory.create(category=other)
+
+        response = self.client.get(
+            reverse('category', kwargs={'slug': laptops.slug}))
+
+        # Assert that the Category name is displayed
+        self.assertContains(response, laptops.name)
+        self.assertNotContains(response, other.name)
+
+        # Products in that category are displayed
+        self.assertContains(response, comp1.name)
+        self.assertNotContains(response, other_product.name)
+
+
 class ProductListTest(TestCase):
     """Test for the ProductList displayed on Home Page"""
 
@@ -47,6 +78,7 @@ class ProductListTest(TestCase):
 
         self.assertIn(featured, response.context['featured'])
 
+        # Only featured items should be displayed
         self.assertContains(response, featured.name)
         self.assertNotContains(response, unfeatured.name)
 
@@ -58,7 +90,8 @@ class ProductDetailTest(TestCase):
         lenovo = ProductFactory.create(name='Lenovo')
 
         # Returns ResolverMatch object
-        response = resolve(reverse('products:detail', kwargs={'product_id': lenovo.id}))
+        response = resolve(reverse(
+            'products:detail', kwargs={'product_id': lenovo.id}))
 
         self.assertEqual(
             response.func.__name__,
@@ -67,7 +100,8 @@ class ProductDetailTest(TestCase):
     def test_uses_product_detail_template(self):
         product = ProductFactory.create()
 
-        response = self.client.get(reverse('products:detail', args=[product.id]))
+        response = self.client.get(
+            reverse('products:detail', args=[product.id]))
 
         self.assertTemplateUsed(response, 'store/product_detail.html')
 
@@ -75,7 +109,8 @@ class ProductDetailTest(TestCase):
         product = ProductFactory.create()
         review = ReviewFactory.create(product=product)
 
-        response = self.client.get(reverse('products:detail', args=[product.id]))
+        response = self.client.get(
+            reverse('products:detail', args=[product.id]))
 
         self.assertContains(response, review.name)
         self.assertContains(response, review.text)
