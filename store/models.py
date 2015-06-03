@@ -3,6 +3,16 @@ from django.db import models
 from taggit.managers import TaggableManager
 
 
+class Category(models.Model):
+    """Represents the Category of a Product on Sale"""
+
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     """Represents an Individual Product on Sale"""
 

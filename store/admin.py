@@ -11,6 +11,10 @@ class SpecificationInline(admin.StackedInline):
     model = Specification
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
