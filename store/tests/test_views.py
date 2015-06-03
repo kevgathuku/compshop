@@ -115,6 +115,21 @@ class ProductDetailTest(TestCase):
         self.assertContains(response, review.name)
         self.assertContains(response, review.text)
 
+    def test_related_products_are_populated_correctly(self):
+        products = []
+
+        bulk_cat = CategoryFactory.create()
+        products.extend(ProductFactory.create_batch(5, category=bulk_cat))
+
+        response = self.client.get(
+            reverse('products:detail', args=[products[0].id]))
+
+        self.assertEqual(
+            len(response.context['related']),
+            3,
+            "Only 3 related products should be passed in the context")
+        for item in response.context['related']:
+            self.assertIn(item, products)
 
 class ProductReviewTest(TestCase):
     """Test for Individual Product Reviews"""

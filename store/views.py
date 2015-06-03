@@ -36,6 +36,8 @@ class ProductDetail(DetailView):
         context['specs'] = self.object.specs.all()
         context['reviews'] = self.object.reviews.all()
         context['form'] = ReviewForm(initial={'product': self.object})
+        context['related'] = Product.objects.filter(
+            category=self.object.category).exclude(id__exact=self.object.id)[:3]
         return context
 
 
