@@ -10,6 +10,7 @@ from .models import Category, Product, Review
 class CategoryDetail(DetailView):
     model = Category
 
+
 class ProductList(ListView):
     model = Product
     template_name = 'store/index.html'
@@ -27,7 +28,6 @@ class ProductCatalogue(ListView):
 
 class ProductDetail(DetailView):
     model = Product
-    pk_url_kwarg = 'product_id'
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetail, self).get_context_data(**kwargs)

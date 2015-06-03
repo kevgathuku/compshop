@@ -37,6 +37,9 @@ class Product(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField(default=True)
 
+    def get_absolute_url(self):
+        return reverse('products:detail', args=[str(self.slug)])
+
     def __str__(self):
         return self.name
 
