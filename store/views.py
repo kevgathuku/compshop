@@ -3,7 +3,6 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
-from .forms import ReviewForm
 from .models import Category, Product, Review
 
 
@@ -49,7 +48,6 @@ class ProductDetail(DetailView):
         context['main_image'] = self.object.images.first()
         context['specs'] = self.object.specs.all()
         context['reviews'] = self.object.reviews.all()
-        context['form'] = ReviewForm(initial={'product': self.object})
         context['related'] = Product.objects.filter(
             category=self.object.category).exclude(
             id__exact=self.object.id)[:3]
@@ -58,14 +56,14 @@ class ProductDetail(DetailView):
 
 def product_review(request):
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            product = form.cleaned_data['product']
-            form.save()
-            # redirect to a new URL:
-            return redirect(
-                reverse(product.get_absolute_url()))
+        name = request.POST.get('name')
+        rating = request.POST.get('rating')
+        text = request.POST.get('text')
+        prod = request.POST.get('product')
+        if name and rating and text and prod:
+            product = Product.objects.get(id=prod)
+            review = Review.objects.create(name=name, rating=rating, text=text, product=product)
+            review.full_clean()
+            return redirect(product)
     else:
         raise Http404
