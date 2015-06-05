@@ -66,6 +66,6 @@ def product_review(request):
             form.save()
             # redirect to a new URL:
             return redirect(
-                reverse('products:detail', kwargs={'product_id': product.pk}))
+                reverse(product.get_absolute_url()))
     else:
         raise Http404
