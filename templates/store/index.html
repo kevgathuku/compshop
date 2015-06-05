@@ -62,48 +62,10 @@
         	<div class="col-lg-3 col-md-3 col-sm-12">
 
         		<!-- Categories -->
-        		<div class="col-lg-12 col-md-12 col-sm-6">
-	        		<div class="no-padding">
-	            		<span class="title">CATEGORIES</span>
-	            	</div>
-
-				<div id="main_menu">
-            <div class="list-group panel panel-cat">
-                <a href="index.html#sub1" class="list-group-item" data-toggle="collapse" data-parent="#main_menu">Cras justo odio <i class="fa fa-caret-down pull-right"></i></a>
-                <div class="collapse list-group-sub" id="sub1">
-                    <a href="index.html#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
-                    <div class="collapse list-group-submenu" id="SubMenu1">
-                        <a href="index.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-                        <a href="index.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-                        <a href="index.html#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
-                            <a href="index.html#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
-                            <a href="index.html#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
-                        </div>
-                        <a href="index.html#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
-                    </div>
-                    <a href="javascript:;" class="list-group-item">Subitem 2</a>
-                    <a href="javascript:;" class="list-group-item">Subitem 3</a>
-                </div>
-                <a href="index.html#" class="list-group-item" >Dapibus ac facilisis in</a>
-                <a href="index.html#sub2" class="list-group-item" data-toggle="collapse" data-parent="#main_menu">Porta ac consectetur ac <i class="fa fa-caret-down pull-right"></i></a>
-                <div class="collapse list-group-sub" id="sub2">
-                    <a href="index.html" class="list-group-item">Subitem 1</a>
-                    <a href="index.html" class="list-group-item">Subitem 2</a>
-                    <a href="index.html" class="list-group-item">Subitem 3</a>
-                </div>
-                <a href="index.html#" class="list-group-item" >Vestibulum at eros</a>
-                <a href="index.html#" class="list-group-item" >Porta ac consectetur ac</a>
-                <a href="index.html#" class="list-group-item" >Cras justo odio</a>
-                <a href="index.html#" class="list-group-item" >Dapibus ac facilisis in</a>
-                <a href="index.html#" class="list-group-item" >Porta ac consectetur ac</a>
-                <a href="index.html#" class="list-group-item" >Vestibulum at eros</a>
-                <a href="index.html#" class="list-group-item" >Porta ac consectetur ac</a>
-            </div>
-          </div>
-
-				</div>
-				<!-- End Categories -->
+            {% block categories %}
+              {{ block.super }}
+            {% endblock %}
+          <!-- End Categories -->
 
 				<!-- Best Seller -->
 				<div class="col-lg-12 col-md-12 col-sm-6">
