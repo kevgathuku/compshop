@@ -10,6 +10,12 @@ from .models import Category, Product, Review
 class CategoryDetail(DetailView):
     model = Category
 
+    def get_context_data(self, **kwargs):
+        context = super(CategoryDetail, self).get_context_data(**kwargs)
+        context['categories'] = [cat for cat in Category.objects.all()
+                                 if cat.products.count() > 0]
+        return context
+
 
 class ProductList(ListView):
     model = Product
@@ -18,12 +24,20 @@ class ProductList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ProductList, self).get_context_data(**kwargs)
         context['featured'] = Product.objects.filter(featured=True)[:6]
+        context['categories'] = [cat for cat in Category.objects.all()
+                                 if cat.products.count() > 0]
         return context
 
 
 class ProductCatalogue(ListView):
     model = Product
     template_name = 'store/catalogue.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductCatalogue, self).get_context_data(**kwargs)
+        context['categories'] = [cat for cat in Category.objects.all()
+                                 if cat.products.count() > 0]
+        return context
 
 
 class ProductDetail(DetailView):
@@ -37,7 +51,8 @@ class ProductDetail(DetailView):
         context['reviews'] = self.object.reviews.all()
         context['form'] = ReviewForm(initial={'product': self.object})
         context['related'] = Product.objects.filter(
-            category=self.object.category).exclude(id__exact=self.object.id)[:3]
+            category=self.object.category).exclude(
+            id__exact=self.object.id)[:3]
         return context
 
 
@@ -51,6 +66,6 @@ def product_review(request):
             form.save()
             # redirect to a new URL:
             return redirect(
-                reverse('products:detail', kwargs={'product_id': product.pk}))
+                reverse(product.get_absolute_url()))
     else:
         raise Http404

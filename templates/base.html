@@ -119,6 +119,26 @@
 
   {% block content %}
 
+    {% block categories %}
+
+        <!-- Categories -->
+        <div class="col-lg-12 col-md-12 col-sm-6">
+          <div class="no-padding">
+              <span class="title">CATEGORIES</span>
+          </div>
+
+           <div id="main_menu">
+            <div class="list-group panel panel-cat">
+              {% for cat in categories %}
+                <a href="{{cat.get_absolute_url}}" class="list-group-item"> {{cat.name}} </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <!-- End Categories -->
+
+  {% endblock %}
+
   {% endblock %}
 
   {% block footer %}
@@ -139,10 +159,9 @@
             <div class="column">
               <h4>Categories</h4>
               <ul>
-                <li><a href="catalogue.html">Cras justo odio</a></li>
-                <li><a href="catalogue.html">Dapibus ac facilisis in</a></li>
-                <li><a href="catalogue.html">Morbi leo risus</a></li>
-                <li><a href="catalogue.html">Porta ac consectetur ac</a></li>
+                {% for category in all_categories %}
+                  <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -174,7 +193,7 @@
         </div>
     </footer>
 
-    <a href="index.html#top" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false">
+    <a href="#top" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false">
       <i class="fa fa-angle-double-up"></i>
     </a>
     {% block footer_links %}
