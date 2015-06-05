@@ -163,11 +163,33 @@ class ProductReviewTest(TestCase):
     """Test for Individual Product Reviews"""
 
     # TODO: Fix test: Actually resolves to the ProductDetail view
-    # def test_product_review_url_resolves_to_correct_view(self):
-    #     response = resolve(reverse('products:review'))
-    #     self.assertEqual(response.func, product_review)
+    def test_product_review_url_resolves_to_correct_view(self):
+        response = resolve(reverse('products:review'))
+        self.assertEqual(response.func, product_review)
 
     def test_product_review_url_handles_POST_requests_only(self):
         response = self.client.get(reverse('products:review'))
 
         self.assertEqual(response.status_code, 404)
+
+    # def test_validation_errors_are_sent_back_to_product_template(self):
+    #     product = ProductFactory.create()
+
+    #     response = self.client.post(
+    #         product.get_absolute_url(), data={'text': ''})
+
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'store/product_detail.html')
+
+    #     expected_errors = ["Please leave a rating", "Please fill in this field"]
+    #     for error in expected_errors:
+    #         self.assertContains(response, expected_errors)
+
+    # def test_POST_redirects_to_product_detail_view(self):
+    #     product = ProductFactory.create()
+
+    #     response = self.client.post(
+    #         product.get_absolute_url(),
+    #         data={'name':'Kevin', 'text': 'Some Text', 'rating': 5, 'product': product.id})
+
+    #     self.assertRedirects(response, product.get_absolute_url())
