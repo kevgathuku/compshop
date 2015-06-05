@@ -24,6 +24,18 @@ class CategoryTest(TestCase):
             response.func.__name__,
             CategoryDetail.as_view().__name__)
 
+    def test_categories_context(self):
+        cat1 = CategoryFactory.create()
+        cat2 = CategoryFactory.create()
+
+        product1 = ProductFactory.create(category=cat1)
+
+        response = self.client.get('/')
+
+        # The category without a related product is not in the context
+        self.assertIn(cat1, response.context['categories'])
+        self.assertNotIn(cat2, response.context['categories'])
+
 
 class CategoryDisplayTest(TestCase):
     """Test for the CategoryDetail view"""
