@@ -197,10 +197,9 @@
 														<i class="fa fa-star"></i>
 													{% endfor %}
 												</div>
-												<em>{{review.name}}</em>
 											</span>
 											<div class="media-body">
-												<h5 class="media-heading"><strong>{{review.title}}</strong></h5>
+												<h5 class="media-heading"><strong>{{review.name}}</strong></h5>
 												{{review.text}}
 											</div>
 										</div>
@@ -213,15 +212,12 @@
                     		{# product is a hidden field #}
                     		{{form.product}}
                         <div class="form-group">
-                            {{ form.name }}
-                        </div>
-                        <div class="form-group">
-                            {{ form.title }}
-                        </div>
-                        <div class="form-group">
                             <input id="id-rating" type="number" class="rating" min="0" max="5" step="1"
-           													data-size="sm" data-symbol="&#xf005;" data-glyphicon="false"
-           													data-rating-class="rating-fa" name="rating" />
+                                    data-size="sm" data-symbol="&#xf005;" data-glyphicon="false"
+                                    data-rating-class="rating-fa" name="rating" />
+                        </div>
+                        <div class="form-group">
+                            {{ form.name }}
                         </div>
                         <div class="form-group">
                         		{{form.text}}
