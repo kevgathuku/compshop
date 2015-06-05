@@ -171,19 +171,6 @@ class ProductReviewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
-    def test_validation_errors_are_sent_back_to_product_template(self):
-        product = ProductFactory.create()
-
-        response = self.client.post(
-            reverse('products:review'), data={'text': ''})
-
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'store/product_detail.html')
-
-        expected_errors = ["Please leave a rating", "Please fill in the review"]
-        for error in expected_errors:
-            self.assertContains(response, expected_errors)
-
     def test_POST_redirects_to_product_detail_view(self):
         product = ProductFactory.create()
 
