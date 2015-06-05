@@ -1,4 +1,3 @@
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
@@ -62,10 +61,10 @@ def product_review(request):
         form = ReviewForm(request.POST)
         if form.is_valid():
             # process the data in form.cleaned_data as required
+            # product is now an instance of the Product class
             product = form.cleaned_data['product']
             form.save()
-            # redirect to a new URL:
-            return redirect(
-                reverse(product.get_absolute_url()))
+            # redirect to the product detail page
+            return redirect(product)
     else:
         raise Http404
