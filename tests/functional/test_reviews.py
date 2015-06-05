@@ -27,7 +27,7 @@ class ReviewTest(FunctionalTest):
 
         # The rating and text fields should have errors
         self.assertIn("Please leave a rating", errors)
-        self.assertIn("Please fill in this field", errors)
+        self.assertIn("Please fill in the review", errors)
 
         # She tries again with some text for the item, which now works
 

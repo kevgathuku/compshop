@@ -25,3 +25,7 @@ class ReviewForm(forms.models.ModelForm):
                     }),
             'product': forms.HiddenInput(),
         }
+        error_messages = {
+            'text': {'required': "Please fill in the review"},
+            'rating': {'required': "Please leave a rating"}
+            }

@@ -180,7 +180,7 @@ class ProductReviewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'store/product_detail.html')
 
-        expected_errors = ["Please leave a rating", "Please fill in this field"]
+        expected_errors = ["Please leave a rating", "Please fill in the review"]
         for error in expected_errors:
             self.assertContains(response, expected_errors)
 
