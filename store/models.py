@@ -77,7 +77,6 @@ class Review(models.Model):
     )
 
     name = models.CharField(max_length=30, blank=True, default='Anonymous')
-    title = models.CharField(max_length=50)
     rating = models.PositiveSmallIntegerField(choices=RATINGS_CHOICES, blank=False)
     text = models.TextField()
     product = models.ForeignKey(Product, related_name='reviews')
