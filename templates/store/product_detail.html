@@ -207,7 +207,7 @@
 										<hr/>
                     <h4>Add your review</h4>
                     <p></p>
-                    <form role="form" method="post" action="{% url 'products:review' %}">
+                    <form role="form" id='review-form' method="post" action="{% url 'products:review' %}">
                     	{% csrf_token %}
                     		{# product is a hidden field #}
                     		{{form.product}}
@@ -275,6 +275,7 @@
 {% block footer_links %}
   <script src="{% static "js/jquery.js" %}"></script>
   <script src="{% static "js/bootstrap.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
   <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
   <script src="{% static "js/bootstrap.touchspin.js" %}"></script>
   <script src="{% static "js/jquery.zoom.min.js" %}"></script>
