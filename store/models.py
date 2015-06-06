@@ -82,4 +82,4 @@ class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews')
 
     def __str__(self):
-        return '{} star: {}'.format(self.rating, self.title)
+        return '{} star: {}'.format(self.rating, self.product.name)
