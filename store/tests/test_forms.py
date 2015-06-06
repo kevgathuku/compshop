@@ -17,7 +17,7 @@ class ReviewFormTest(TestCase):
         self.assertEqual(form.errors['rating'],["Please leave a rating"])
 
 
-    def test_form_save_handles_saving_to_a_list(self):
+    def test_form_save_handles_saving_product_reviews(self):
         prod = ProductFactory.create()
 
         form = ReviewForm(
@@ -28,3 +28,11 @@ class ReviewFormTest(TestCase):
         self.assertEqual(new_review, Review.objects.first())
         self.assertEqual(new_review.name, 'Kevin')
         self.assertEqual(new_review.product, prod)
+
+    def test_empty_name_field_doesnt_raise_errors(self):
+        prod = ProductFactory.create()
+
+        form = ReviewForm(
+            data={'name':'', 'text': 'Review', 'rating': 3, 'product':prod.id})
+
+        self.assertTrue(form.is_valid())
