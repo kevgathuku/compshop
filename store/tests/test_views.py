@@ -171,11 +171,13 @@ class ProductReviewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
-    def test_POST_redirects_to_product_detail_view(self):
+    def test_correct_response_is_returned_on_successful_post(self):
         product = ProductFactory.create()
 
         response = self.client.post(
             reverse('products:review'),
             data={'name':'Kevin', 'text': 'Some Text', 'rating': 5, 'product': product.id})
 
-        self.assertRedirects(response, product.get_absolute_url())
+        expected_response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
+
+        self.assertJSONEqual(response.content.decode(), expected_response)
