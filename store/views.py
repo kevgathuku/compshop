@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
@@ -60,11 +60,19 @@ def product_review(request):
         # create a form instance and populate it with data from the request:
         form = ReviewForm(request.POST)
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # product is now an instance of the Product class
-            product = form.cleaned_data['product']
+            # Save the form data
             form.save()
-            # redirect to the product detail page
-            return redirect(product)
+            return JsonResponse(
+                {"reviewRating": "", "reviewName": "", "reviewText": ""})
+        else:
+            if 'rating' in form.errors:
+                return JsonResponse(
+                    {"reviewName": "", "reviewRating": form.errors['rating'][0], "reviewText": ""})
+            elif 'text' in form.errors:
+                return JsonResponse(
+                    {"reviewName": "", "reviewRating": "", "reviewText": form.errors['text'][0]})
+            elif form['name'].value() == '':
+                return JsonResponse(
+                    {"reviewRating": "", "reviewName": "Please fill in your name", "reviewText": ""})
     else:
         raise Http404

@@ -205,25 +205,26 @@
 										</div>
 									{% endfor %}
 										<hr/>
-                    <h4>Add your review</h4>
-                    <p></p>
-                    <form role="form" id='review-form' method="post" action="{% url 'products:review' %}">
-                    	{% csrf_token %}
-                    		{# product is a hidden field #}
-                    		{{form.product}}
-                        <div class="form-group">
-                            <input id="id-rating" type="number" class="rating" min="0" max="5" step="1"
-                                    data-size="sm" data-symbol="&#xf005;" data-glyphicon="false"
-                                    data-rating-class="rating-fa" name="rating" required />
-                        </div>
-                        <div class="form-group">
-                            {{ form.name }}
-                        </div>
-                        <div class="form-group">
-                        		{{form.text}}
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit Review</button>
-                    </form>
+                    <div id='review-area'>
+                      <h4>Add your review</h4>
+                      <form role="form" id='review-form' method="post" action="{% url 'products:review' %}">
+                      	{% csrf_token %}
+                      		{# product is a hidden field #}
+                      		{{form.product}}
+                          <div class="form-group">
+                              <input id="id-rating" type="number" class="rating" min="0" max="5" step="1"
+                                      data-size="sm" data-symbol="&#xf005;" data-glyphicon="false"
+                                      data-rating-class="rating-fa" name="rating" required />
+                          </div>
+                          <div class="form-group">
+                              {{ form.name }}
+                          </div>
+                          <div class="form-group">
+                          		{{form.text}}
+                          </div>
+                          <button type="submit" class="btn btn-default">Submit Review</button>
+                      </form>
+                    </div>
 									</div>
 								</div>
 							</div>
