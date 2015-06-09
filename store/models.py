@@ -58,7 +58,12 @@ class Specification(models.Model):
 class Image(models.Model):
     """Represents an Image associated with the Product"""
 
-    photo = models.ImageField(upload_to='%Y-%m-%d/')
+    def image_path(instance, filename):
+        return '{}/{}/{}'.format(
+            instance.product.category.slug, instance.product.slug, filename)
+
+
+    photo = models.ImageField(upload_to=image_path)
     product = models.ManyToManyField(Product, related_name='images')
 
     def __str__(self):
