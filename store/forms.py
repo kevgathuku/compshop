@@ -22,5 +22,6 @@ class ReviewForm(forms.models.ModelForm):
         }
         error_messages = {
             'text': {'required': "Please fill in the review"},
-            'rating': {'required': "Please leave a rating"}
+            'rating': {'required': "Please leave a rating",
+                       'invalid_choice': 'Please leave a valid rating'}
             }
