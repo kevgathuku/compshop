@@ -9,13 +9,20 @@ $(document).ready(function() {
         $('#review-form').validate();
     });
 
-    $('#review-form input[type="text"], form textarea').on('focus', function() {
-        $('form input[type="text"], form textarea').removeClass('has-error');
+    $('#form-group-rating, #review-form input[type="text"], form textarea').on('focus', function() {
+        $('#form-group-rating, #form-group-name, #form-group-text').removeClass('has-error');
+        if ($(this).find('span.help-block').length){
+            $(this).find('span.help-block').remove();
+        }
     });
-	$('form').submit(function(e) {
+	$('#review-form').submit(function(e) {
 		e.preventDefault();
-	    $('form #id-rating, form #id_name, form #id_text').removeClass('has-error');
-	    var postdata = $('form').serialize();
+	    $('#form-group-rating, #form-group-name, #form-group-text').removeClass('has-error');
+        if ($(this).find('span.help-block').length){
+            $(this).find('span.help-block').remove();
+        }
+	    var postdata = $('#review-form').serialize();
+        var span = $(document.createElement('span')).addClass('help-block');
 	    $.ajax({
 	        type: 'POST',
 	        url: '/products/review/',
@@ -23,13 +30,19 @@ $(document).ready(function() {
 	        dataType: 'json',
 	        success: function(json) {
 	            if(json.reviewRating != '') {
-	                $('form #id-rating').addClass('has-error');
+	                $('#form-group-rating').addClass('has-error');
+                    if ($('#form-group-rating').find('span.help-block').length == 0)
+                    {
+                        $('#form-group-rating').append(span.html(json.reviewRating));
+	                }
+                }
+	            else if(json.reviewName != '') {
+	                $('#form-group-name').addClass('has-error');
+                    $('#form-group-name').append(span.html(json.reviewName));
 	            }
-	            if(json.reviewName != '') {
-	                $('form #id_name').addClass('has-error');
-	            }
-	            if(json.reviewText != '') {
-	                $('form #id_text').addClass('has-error');
+	            else if(json.reviewText != '') {
+	                $('#form-group-text').addClass('has-error');
+                    $('#form-group-text').append(span.html(json.reviewText));
 	            }
                 // No error message has been received from the server
 	            if(json.reviewRating == '' && json.reviewName == '' && json.reviewText == '') {
