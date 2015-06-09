@@ -211,15 +211,15 @@
                       	{% csrf_token %}
                       		{# product is a hidden field #}
                       		{{form.product}}
-                          <div class="form-group">
+                          <div class="form-group" id="form-group-rating">
                               <input id="id-rating" type="number" class="rating" min="0" max="5" step="1"
                                       data-size="sm" data-symbol="&#xf005;" data-glyphicon="false"
                                       data-rating-class="rating-fa" name="rating" required />
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" id="form-group-name">
                               {{ form.name }}
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" id="form-group-text">
                           		{{form.text}}
                           </div>
                           <button type="submit" class="btn btn-default">Submit Review</button>
