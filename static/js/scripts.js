@@ -46,7 +46,7 @@ $(document).ready(function() {
 	            }
                 // No error message has been received from the server
 	            if(json.reviewRating == '' && json.reviewName == '' && json.reviewText == '') {
-	               $('#review-area').replaceWith(
+	               $('#review-area').html(
                     '<h3 class="text-center bg-success">Thanks. Your Review has been Posted.</h3>');
 	            }
 	        }
