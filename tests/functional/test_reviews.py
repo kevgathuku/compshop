@@ -1,4 +1,4 @@
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
 from .base import FunctionalTest
 
@@ -23,16 +23,31 @@ class ReviewTest(FunctionalTest):
 
         # The page refreshes, and there is an error message saying
         # that the review text cannot be empty
-        errors = self.browser.find_elements_by_css_selector('.has-error')
+        form = self.browser.find_element_by_id('review-form')
+        error = form.find_element_by_css_selector('.has-error')
 
-        # The rating and text fields should have errors
-        self.assertIn("Please leave a rating", errors)
-        self.assertIn("Please fill in the review", errors)
+        # The rating fields should display an error
+        self.assertIn("Please leave a valid rating", error.text)
+
+        # She tries again with a valid rating but no review
+        # Fill in the star rating via jQuery
+        self.browser.execute_script("$('#id-rating').rating('update', 3)")
+        form.submit()
+
+        # She gets an error message telling her to fill in the review
+        error = form.find_element_by_css_selector('.has-error')
+        self.assertEqual("Please fill in the review", error.text)
 
         # She tries again with some text for the item, which now works
+        self.browser.execute_script("$('#id-rating').rating('update', 3)")
+        self.browser.find_element_by_id('id_name').send_keys('Beverly')
+        self.browser.find_element_by_id('id_text').send_keys('Good Product')
 
-        # Perversely, she now decides to submit a second blank review
+        self.browser.find_element_by_id('id_name').submit()
 
-        # She receives a similar warning on the product page
+        # Assert that the form has been replaced with a success message
+        with self.assertRaises(NoSuchElementException):
+            self.browser.find_element_by_id('review-form')
 
-        # And she can correct it
+        review_area = self.browser.find_element_by_id('review-area')
+        self.assertEqual("Thanks. Your Review has been Posted.", review_area.text)
