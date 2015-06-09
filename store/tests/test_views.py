@@ -162,12 +162,22 @@ class ProductDetailTest(TestCase):
 class ProductReviewTest(TestCase):
     """Test for Individual Product Reviews"""
 
-    # TODO: Fix test: Actually resolves to the ProductDetail view
-    # def test_product_review_url_resolves_to_correct_view(self):
-    #     response = resolve(reverse('products:review'))
-    #     self.assertEqual(response.func, product_review)
+    def test_product_review_url_resolves_to_correct_view(self):
+        response = resolve(reverse('products:review'))
+        self.assertEqual(response.func, product_review)
 
     def test_product_review_url_handles_POST_requests_only(self):
         response = self.client.get(reverse('products:review'))
 
         self.assertEqual(response.status_code, 404)
+
+    def test_correct_response_is_returned_on_successful_post(self):
+        product = ProductFactory.create()
+
+        response = self.client.post(
+            reverse('products:review'),
+            data={'name':'Kevin', 'text': 'Some Text', 'rating': 5, 'product': product.id})
+
+        expected_response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
+
+        self.assertJSONEqual(response.content.decode(), expected_response)
