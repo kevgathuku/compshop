@@ -34,11 +34,20 @@ class ReviewTest(FunctionalTest):
         self.browser.execute_script("$('#id-rating').rating('update', 3)")
         form.submit()
 
-        # She gets an error message telling her to fill in the review
+        # She gets an error message telling her to fill in her name
         error = form.find_element_by_css_selector('.has-error')
-        self.assertEqual("Please fill in the review", error.text)
+        self.assertEqual("Please fill in your name", error.text)
 
-        # She tries again with some text for the item, which now works
+        # She tries filling in her name and rating but no review
+        self.browser.execute_script("$('#id-rating').rating('update', 3)")
+        self.browser.find_element_by_id('id_name').send_keys('Beverly')
+        self.browser.find_element_by_id('id_name').submit()
+
+        # She gets an error informing her to fill in the review
+        error = form.find_element_by_css_selector('.has-error')
+        self.assertIn("Please fill in the review", error.text)
+
+        # She tries again, filling in all fields, which now works
         self.browser.execute_script("$('#id-rating').rating('update', 3)")
         self.browser.find_element_by_id('id_name').send_keys('Beverly')
         self.browser.find_element_by_id('id_text').send_keys('Good Product')
