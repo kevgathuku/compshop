@@ -11,8 +11,6 @@ class CategoryDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CategoryDetail, self).get_context_data(**kwargs)
-        context['categories'] = [cat for cat in Category.objects.all()
-                                 if cat.products.count() > 0]
         return context
 
 
@@ -23,8 +21,6 @@ class ProductList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ProductList, self).get_context_data(**kwargs)
         context['featured'] = Product.objects.filter(featured=True)[:6]
-        context['categories'] = [cat for cat in Category.objects.all()
-                                 if cat.products.count() > 0]
         return context
 
 
@@ -34,8 +30,6 @@ class ProductCatalogue(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductCatalogue, self).get_context_data(**kwargs)
-        context['categories'] = [cat for cat in Category.objects.all()
-                                 if cat.products.count() > 0]
         return context
 
 

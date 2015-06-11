@@ -1,9 +1,10 @@
 from .models import Category
 
 
-def footer_categories(request):
+def product_categories(request):
     """
-    Returns a context variable containing all categories
+    Returns a context variable containing categories with products
     """
-    all_categories = Category.objects.all()
-    return {'all_categories': all_categories}
+    categories = [cat for cat in Category.objects.all()
+                  if cat.products.count() > 0]
+    return {'product_categories': categories}
