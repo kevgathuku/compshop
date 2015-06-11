@@ -93,17 +93,24 @@ class ProductListTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'store/index.html')
 
-    def test_correct_context_is_passed_to_template(self):
+    def test_correct_featured_products_are_passed_to_template(self):
         featured = ProductFactory.create(featured=True)
         unfeatured = ProductFactory.create(featured=False)
 
         response = self.client.get(reverse('home'))
 
         self.assertIn(featured, response.context['featured'])
+        self.assertNotIn(unfeatured, response.context['featured'])
 
-        # Only featured items should be displayed
-        self.assertContains(response, featured.name)
-        self.assertNotContains(response, unfeatured.name)
+    def test_latest_products_are_passed_to_template(self):
+        prods = ProductFactory.create_batch(10)
+
+        response = self.client.get(reverse('home'))
+
+        # 3 latest products are passed in the context
+        self.assertEqual(3, len(response.context['latest']))
+        # Test that the 2 lists contain the same products
+        self.assertCountEqual(prods[-3:], response.context['latest'])
 
 
 class ProductDetailTest(TestCase):
