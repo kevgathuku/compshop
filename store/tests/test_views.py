@@ -199,3 +199,40 @@ class ProductReviewTest(TestCase):
         expected_response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
 
         self.assertJSONEqual(response.content.decode(), expected_response)
+
+    def test_correct_error_response_is_returned_on_wrong_input(self):
+        product = ProductFactory.create()
+
+        response = self.client.post(
+            reverse('products:review'),
+            data={'name':'', 'text': 'Some Text', 'rating': 5, 'product': product.id})
+
+        expected_response = {"reviewRating": "", "reviewName": 'Please fill in your name', "reviewText": ""}
+
+        self.assertJSONEqual(response.content.decode(), expected_response)
+
+    def test_correct_error_response_is_returned_on_wrong_input_for_two_fields(self):
+        product = ProductFactory.create()
+
+        response = self.client.post(
+            reverse('products:review'),
+            data={'name':'', 'text': '', 'rating': 5, 'product': product.id})
+
+        expected_response = {"reviewRating": "",
+                             "reviewName": 'Please fill in your name',
+                             "reviewText": "Please fill in the review"}
+
+        self.assertJSONEqual(response.content.decode(), expected_response)
+
+    def test_correct_error_response_is_returned_for_all_invalid_inputs(self):
+        product = ProductFactory.create()
+
+        response = self.client.post(
+            reverse('products:review'),
+            data={'name':'', 'text': '', 'rating': 8, 'product': product.id})
+
+        expected_response = {"reviewRating": "Please leave a valid rating",
+                             "reviewName": 'Please fill in your name',
+                             "reviewText": "Please fill in the review"}
+
+        self.assertJSONEqual(response.content.decode(), expected_response)

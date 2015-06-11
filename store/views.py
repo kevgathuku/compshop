@@ -60,14 +60,13 @@ def product_review(request):
             return JsonResponse(
                 {"reviewRating": "", "reviewName": "", "reviewText": ""})
         else:
+            response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
             if 'rating' in form.errors:
-                return JsonResponse(
-                    {"reviewName": "", "reviewRating": form.errors['rating'][0], "reviewText": ""})
-            elif 'name' in form.errors:
-                return JsonResponse(
-                    {"reviewRating": "", "reviewName": form.errors['name'][0], "reviewText": ""})
-            elif 'text' in form.errors:
-                return JsonResponse(
-                    {"reviewName": "", "reviewRating": "", "reviewText": form.errors['text'][0]})
+               response["reviewRating"] = form.errors['rating'][0]
+            if 'name' in form.errors:
+                response["reviewName"] = form.errors['name'][0]
+            if 'text' in form.errors:
+                response["reviewText"] = form.errors['text'][0]
+            return JsonResponse(response)
     else:
         raise Http404
