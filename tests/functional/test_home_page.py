@@ -28,6 +28,25 @@ class HomePageTest(FunctionalTest):
             menu.text,
             "Categories without products should not be visible on the sidebar")
 
+        def test_category_footer_display(self):
+            cat1 = CategoryFactory.create()
+            cat2 = CategoryFactory.create()
+
+            product1 = ProductFactory.create(category=cat1)
+
+            self.browser.get(self.live_server_url)
+
+            menu = self.browser.find_element_by_tag_name('footer')
+
+            self.assertIn(
+                cat1.name,
+                menu.text,
+                "Categories with products should be visible in the footer")
+            self.assertNotIn(
+                cat2.name,
+                menu.text,
+                "Categories without products should not be visible in the footer")
+
 
     def test_navbar_links(self):
         self.browser.get(self.live_server_url)
