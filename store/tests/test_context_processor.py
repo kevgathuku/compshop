@@ -15,7 +15,7 @@ class FooterCategoriesContextProcessorTests(TestCase):
     def test_custom_context_exists(self):
         # Get the homepage
         response = self.client.get('/')
-        self.assertIn('all_categories', response.context)
+        self.assertIn('product_categories', response.context)
 
     @override_settings(
     TEMPLATES = [
@@ -37,4 +37,4 @@ class FooterCategoriesContextProcessorTests(TestCase):
     def test_custom_context_does_not_exist_if_not_included_in_settings(self):
         # Get the homepage
         response = self.client.get('/')
-        self.assertNotIn('all_categories', response.context)
+        self.assertNotIn('product_categories', response.context)
