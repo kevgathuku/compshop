@@ -29,18 +29,15 @@ $(document).ready(function() {
 	        data: postdata,
 	        dataType: 'json',
 	        success: function(json) {
-	            if(json.reviewRating != '') {
+	            if(json.reviewRating.length) {
 	                $('#form-group-rating').addClass('has-error');
-                    if ($('#form-group-rating').find('span.help-block').length == 0)
-                    {
-                        $('#form-group-rating').append(span.html(json.reviewRating));
-	                }
+                    $('#form-group-rating').append(span.html(json.reviewRating));
                 }
-	            else if(json.reviewName != '') {
+	            if(json.reviewName.length) {
 	                $('#form-group-name').addClass('has-error');
                     $('#form-group-name').append(span.html(json.reviewName));
 	            }
-	            else if(json.reviewText != '') {
+	            if(json.reviewText) {
 	                $('#form-group-text').addClass('has-error');
                     $('#form-group-text').append(span.html(json.reviewText));
 	            }

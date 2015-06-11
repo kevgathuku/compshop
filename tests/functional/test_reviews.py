@@ -7,12 +7,14 @@ from store.tests.factories import *
 
 class ReviewTest(FunctionalTest):
 
-    def test_cannot_add_empty_reviews(self):
+    def setUp(self):
+        super(ReviewTest, self).setUp()
         # Create a sample product
-        product = ProductFactory.create()
+        self.product = ProductFactory.create()
 
+    def test_cannot_add_empty_reviews(self):
         # Beverly navigates to the Product Page
-        self.browser.get(self.live_server_url + product.get_absolute_url())
+        self.browser.get(self.live_server_url + self.product.get_absolute_url())
 
         # Activate the Reviews tab
         self.browser.find_element_by_link_text('Reviews').click()
@@ -24,19 +26,29 @@ class ReviewTest(FunctionalTest):
         # The page refreshes, and there is an error message saying
         # that the review text cannot be empty
         form = self.browser.find_element_by_id('review-form')
-        error = form.find_element_by_css_selector('.has-error')
+        errors = form.find_elements_by_css_selector('.has-error')
 
-        # The rating fields should display an error
-        self.assertIn("Please leave a valid rating", error.text)
+        # All fields should have an error class
+        self.assertEqual(len(errors), 3, "All form fields should raise errors")
+        self.assertIn("Please fill in the review", [e.text for e in errors])
 
-        # She tries again with a valid rating but no review
+    def test_must_fill_all_fields(self):
+        # Beverly navigates to the Product Page
+        self.browser.get(self.live_server_url + self.product.get_absolute_url())
+
+        # Activate the Reviews tab
+        self.browser.find_element_by_link_text('Reviews').click()
+
+        # She tries again with a valid rating but no review or name
         # Fill in the star rating via jQuery
+        form = self.browser.find_element_by_id('review-form')
         self.browser.execute_script("$('#id-rating').rating('update', 3)")
         form.submit()
 
-        # She gets an error message telling her to fill in her name
-        error = form.find_element_by_css_selector('.has-error')
-        self.assertEqual("Please fill in your name", error.text)
+        # She gets an error message telling her to fill in the empty fields
+        errors = form.find_elements_by_css_selector('.has-error')
+        self.assertEqual(len(errors), 2, "All Empty fields should raise errors")
+        self.assertIn("Please fill in the review", [e.text for e in errors])
 
         # She tries filling in her name and rating but no review
         self.browser.execute_script("$('#id-rating').rating('update', 3)")

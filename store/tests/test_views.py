@@ -229,7 +229,7 @@ class ProductReviewTest(TestCase):
 
         response = self.client.post(
             reverse('products:review'),
-            data={'name':'', 'text': '', 'rating': 0, 'product': product.id})
+            data={'name':'', 'text': '', 'rating': 8, 'product': product.id})
 
         expected_response = {"reviewRating": "Please leave a valid rating",
                              "reviewName": 'Please fill in your name',
