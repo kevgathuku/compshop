@@ -25,7 +25,7 @@ $(document).ready(function() {
         var span = $(document.createElement('span')).addClass('help-block');
 	    $.ajax({
 	        type: 'POST',
-	        url: '/products/review/',
+	        url: $('#review-form').attr('action'),
 	        data: postdata,
 	        dataType: 'json',
 	        success: function(json) {
