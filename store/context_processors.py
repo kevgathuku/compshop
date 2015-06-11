@@ -1,7 +1,7 @@
 from .models import Category
 
 
-def footer_categories(request):
+def product_categories(request):
     """
     Returns a context variable containing categories with products
     """

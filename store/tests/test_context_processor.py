@@ -7,9 +7,9 @@ from django.conf import settings
 from django.test import TestCase, override_settings
 
 
-class FooterCategoriesContextProcessorTests(TestCase):
+class ProductCategoriesContextProcessorTests(TestCase):
     """
-    Tests for the ``store.context_processors.footer_categories`` processor.
+    Tests for the ``store.context_processors.product_categories`` processor.
     """
 
     def test_custom_context_exists(self):
