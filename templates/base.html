@@ -129,7 +129,7 @@
 
            <div id="main_menu">
             <div class="list-group panel panel-cat">
-              {% for cat in categories %}
+              {% for cat in product_categories %}
                 <a href="{{cat.get_absolute_url}}" class="list-group-item"> {{cat.name}} </a>
               {% endfor %}
             </div>
