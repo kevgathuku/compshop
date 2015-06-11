@@ -12,6 +12,18 @@ class ReviewTest(FunctionalTest):
         # Create a sample product
         self.product = ProductFactory.create()
 
+    def test_name_field_value_is_blank(self):
+        # Beverly navigates to the Product Page
+        self.browser.get(self.live_server_url + self.product.get_absolute_url())
+
+        # Activate the Reviews tab
+        self.browser.find_element_by_link_text('Reviews').click()
+
+        # She should not see a pre-defined value for the review form name field
+        name_field = self.browser.find_element_by_id('id_name')
+        self.assertEqual(name_field.get_attribute("placeholder"), "Your Name")
+        self.assertEqual(name_field.get_attribute("value"), "")
+
     def test_cannot_add_empty_reviews(self):
         # Beverly navigates to the Product Page
         self.browser.get(self.live_server_url + self.product.get_absolute_url())
