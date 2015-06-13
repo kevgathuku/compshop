@@ -76,7 +76,6 @@ class CategoryDisplayTest(TestCase):
 
         # Products in that category are displayed
         self.assertContains(response, comp1.name)
-        self.assertNotContains(response, other_product.name)
 
 
 class ProductListTest(TestCase):
@@ -88,7 +87,7 @@ class ProductListTest(TestCase):
         self.assertEqual(response.view_name, 'home')
 
     def test_home_page_request_uses_correct_template(self):
-        response = self.client.get('/')
+        response = self.client.get(reverse('home'))
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'store/index.html')
