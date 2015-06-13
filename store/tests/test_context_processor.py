@@ -14,12 +14,6 @@ class ProductCategoriesContextProcessorTests(TestCase):
     Tests for the ``store.context_processors.product_categories`` processor.
     """
 
-    def setUp(self):
-        super(ProductCategoriesContextProcessorTests, self).setUp()
-        # Create a fearued product so that selecting a random featured image
-        # in the template doesn't raise an error
-        ProductFactory.create(featured=True)
-
     @override_settings(
     TEMPLATES = [
             {
