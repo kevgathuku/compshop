@@ -85,6 +85,7 @@
                 <span class="title">FEATURED PRODUCTS</span>
               </div>
 
+          {% if featured|length >= 3 and featured|length < 6 %}
             {% for product in featured|slice:":3" %}
               <div class="col-lg-4 col-sm-4 hero-feature text-center">
                 <div class="thumbnail">
@@ -104,6 +105,52 @@
                 </div>
               </div>
             {% endfor %}
+
+          {% elif featured|length >= 6%}
+
+            {% for product in featured|slice:":6" %}
+              <div class="col-lg-4 col-sm-4 hero-feature text-center">
+                <div class="thumbnail">
+                  <a href="{{ product.get_absolute_url }}" class="link-p">
+                      <img src="{{ product.images.first.photo.url }}" alt="">
+                  </a>
+                    <div class="caption prod-caption">
+                      <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                      <p>{{ product.description }}</p>
+                      <p>
+                        <div class="btn-group">
+                          <a href="{{ product.get_absolute_url }}" class="btn btn-default">
+                          Ksh {{product.price|intcomma}}</a>
+                        </div>
+                      </p>
+                    </div>
+                </div>
+              </div>
+            {% endfor %}
+
+          {% else %}
+
+            {% for product in featured %}
+              <div class="col-lg-4 col-sm-4 hero-feature text-center">
+                <div class="thumbnail">
+                  <a href="{{ product.get_absolute_url }}" class="link-p">
+                      <img src="{{ product.images.first.photo.url }}" alt="">
+                  </a>
+                    <div class="caption prod-caption">
+                      <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                      <p>{{ product.description }}</p>
+                      <p>
+                        <div class="btn-group">
+                          <a href="{{ product.get_absolute_url }}" class="btn btn-default">
+                          Ksh {{product.price|intcomma}}</a>
+                        </div>
+                      </p>
+                    </div>
+                </div>
+              </div>
+            {% endfor %}
+
+          {% endif %}
 
           </div>
           <!-- End Featured -->
