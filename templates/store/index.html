@@ -34,7 +34,7 @@
         <!-- End Slider -->
 
        <!-- Product Selection, visible only on large desktop -->
-        {% with prod=featured|random %}
+        {% with prod=featured|first %}
         <div class="col-lg-3 visible-lg">
             <div class="row text-center">
                 <div class="col-lg-12 col-md-12 hero-feature">
