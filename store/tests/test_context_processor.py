@@ -58,3 +58,54 @@ class ProductCategoriesContextProcessorTests(TestCase):
         # Get the homepage
         response = self.client.get(reverse('home'))
         self.assertNotIn('product_categories', response.context)
+
+
+class FeaturedProductsContextProcessorTests(TestCase):
+    """
+    Tests for the ``store.context_processors.featured_products`` processor.
+    """
+
+    @override_settings(
+    TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [os.path.join(settings.BASE_DIR, 'templates')],
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.template.context_processors.debug',
+                        'django.template.context_processors.request',
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                        'store.context_processors.featured_products',
+                    ],
+                },
+            },
+        ]
+    )
+    def test_custom_context_exists_if_context_processor_included(self):
+        # Get the homepage
+        response = self.client.get(reverse('home'))
+        self.assertIn('featured', response.context)
+
+    @override_settings(
+    TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [os.path.join(settings.BASE_DIR, 'templates')],
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.template.context_processors.debug',
+                        'django.template.context_processors.request',
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                    ],
+                },
+            },
+        ]
+    )
+    def test_custom_context_does_not_exist_if_not_included_in_settings(self):
+        # Get the homepage
+        response = self.client.get(reverse('home'))
+        self.assertNotIn('featured', response.context)
