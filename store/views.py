@@ -20,7 +20,6 @@ class ProductList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductList, self).get_context_data(**kwargs)
-        context['featured'] = Product.objects.filter(featured=True)[:6]
         context['latest'] = Product.objects.order_by('-added')[:3]
         return context
 
