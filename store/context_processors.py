@@ -1,5 +1,11 @@
-from .models import Category
+from .models import Category, Product
 
+
+def featured_products(request):
+    """
+    Returns a context variable containing featured products
+    """
+    return {'featured': Product.objects.filter(featured=True)}
 
 def product_categories(request):
     """
