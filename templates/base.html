@@ -146,7 +146,7 @@
           {% for prod in featured|slice:":2" %}
             <div class="hero-feature">
                 <div class="thumbnail text-center">
-                  <a href="{{ product.get_absolute_url }}" class="link-p">
+                  <a href="{{ prod.get_absolute_url }}" class="link-p">
                       <img src="{{prod.images.first.photo.url}}" alt="{{prod.name}}">
                   </a>
                     <div class="caption prod-caption">
