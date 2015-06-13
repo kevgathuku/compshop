@@ -26,34 +26,36 @@
 
         <div class="clearfix visible-sm"></div>
 
-      <!-- Category View -->
-          <div class="col-lg-9 col-md-9 col-sm-12">
-            <div class="col-lg-12 col-sm-12">
-                <span class="title"> {{object.name|upper}} CATALOGUE</span>
-              </div>
+        <!-- Category View -->
+        <div class="col-lg-9 col-md-9 col-sm-12">
+          <div class="col-lg-12 col-sm-12">
+              <span class="title"> {{object.name|upper}} CATALOGUE</span>
+            </div>
 
           {% for product in object.products.all %}
-
-              <div class="col-lg-4 col-sm-4 hero-feature text-center">
-                  <div class="thumbnail">
-                    <a href="{{ product.get_absolute_url }}" class="link-p">
-                        <img src="{{ product.images.first.photo.url }}" alt="">
-                    </a>
-                      <div class="caption prod-caption">
-                        <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
-                        <p>{{ product.description }}</p>
-                        <p>
-                          <div class="btn-group">
-                            <a href="{{ product.get_absolute_url }}" class="btn btn-default">Ksh {{ product.price|intcomma }}</a>
-                          </div>
-                        </p>
+            <div class="col-lg-4 col-sm-4 hero-feature text-center">
+              <div class="thumbnail">
+                <a href="{{ product.get_absolute_url }}" class="link-p">
+                    <img src="{{ product.images.first.photo.url }}" alt="">
+                </a>
+                  <div class="caption prod-caption">
+                    <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                    <p>{{ product.description|truncatechars_html:60 }}</p>
+                    <p>
+                      <div class="btn-group">
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-default">
+                        Ksh {{ product.price|intcomma }}</a>
                       </div>
+                    </p>
                   </div>
               </div>
-
+            </div>
           {% endfor %}
 
-        {# TODO: Fix pagination appearing on center #}
+        </div>
+      </div>
+
+      <div class="row">
         <div class="text-center">
           <ul class="pagination catalogue-pagination">
             <li class="disabled"><a>First</a></li>
@@ -66,10 +68,7 @@
             <li><a href="#">Last</a></li>
           </ul>
         </div>
-          </div>
-          <!-- End Category View -->
-
-
+          <!-- End Catalogue -->
         </div>
-  </div>
+    </div>
 {% endblock %}
