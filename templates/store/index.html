@@ -85,7 +85,7 @@
                 <span class="title">FEATURED PRODUCTS</span>
               </div>
 
-            {% for product in featured|slice:":6" %}
+            {% for product in featured|slice:":3" %}
               <div class="col-lg-4 col-sm-4 hero-feature text-center">
                 <div class="thumbnail">
                   <a href="{{ product.get_absolute_url }}" class="link-p">
