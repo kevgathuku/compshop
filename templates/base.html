@@ -1,4 +1,4 @@
-{% load humanize static %}<!DOCTYPE html>
+{% load humanize static bootstrap3 %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <title>{% block title %} {% endblock %} - Mimity </title>
   {% block head_css %}
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    {% bootstrap_css %}
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
     <link href="{% static "css/jquery.bxslider.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
@@ -225,8 +225,8 @@
       <i class="fa fa-angle-double-up"></i>
     </a>
     {% block footer_links %}
-      <script src="{% static "js/jquery.js" %}"></script>
-      <script src="{% static "js/bootstrap.js" %}"></script>
+      <script src="{% bootstrap_jquery_url %}"></script>
+      {% bootstrap_javascript %}
       <script src="{% static "js/jquery.bxslider.min.js" %}"></script>
       <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
       <script src="{% static "js/mimity.js" %}"></script>
