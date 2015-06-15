@@ -8,5 +8,5 @@ django-taggit==0.14.0
 djrill==1.4.0
 ipython==3.1.0
 Pillow==2.8.1
-psycopg2==2.6
+psycopg2==2.6.1
 pytz==2015.4
