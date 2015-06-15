@@ -32,6 +32,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'bootstrap3',
     'django_extensions',
     'djrill',
     'taggit',
