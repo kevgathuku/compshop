@@ -14,6 +14,8 @@ ALLOWED_HOSTS = ['*']
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+SERVER_EMAIL = "<Comptronics Error> kevgathuku@gmail.com"
+
 ADMINS = (
     ("Kevin Ndung'u", 'kevgathuku@gmail.com'),
 )
