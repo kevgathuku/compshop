@@ -9,10 +9,6 @@ from .models import Category, Product, Review
 class CategoryDetail(DetailView):
     model = Category
 
-    def get_context_data(self, **kwargs):
-        context = super(CategoryDetail, self).get_context_data(**kwargs)
-        return context
-
 
 class ProductList(ListView):
     model = Product
