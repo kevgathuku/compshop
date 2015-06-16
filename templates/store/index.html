@@ -44,7 +44,7 @@
                     </a>
                     <div class="caption prod-caption">
                         <h4><a href="detail.html">{{prod.name}}</a></h4>
-                        <p>{{prod.description}}</p>
+                        <p>{{prod.description|truncatechars_html:160}}</p>
                         <p>
                           <div class="btn-group">
                             <a href="{{ prod.get_absolute_url }}" class="btn btn-default">
