@@ -421,6 +421,14 @@ footer .copyright{
 .tbl-checkout tbody tr td:nth-child(odd){
 	background: #f8f8f8;
 }
+
+.input-qty-detail label {
+    color: #555555;
+    float: left;
+    font-family: "open_sanscondensed_light";
+    font-size: 24px;
+    margin-right: 18px;
+}
 .input-qty-detail .bootstrap-touchspin{
 	float: left;
 	margin-right: 5px;
