@@ -1,9 +1,10 @@
 from django.core.urlresolvers import resolve, reverse
+from django.http import HttpRequest
 from django.test import TestCase
+from django.views.defaults import server_error
 
 from store.views import CategoryDetail, ProductDetail, product_review
 from .factories import *
-
 
 class CategoryTest(TestCase):
     """Basic Category Tests"""
@@ -235,3 +236,13 @@ class ProductReviewTest(TestCase):
                              "reviewText": "Please fill in the review"}
 
         self.assertJSONEqual(response.content.decode(), expected_response)
+
+
+class ErrorTests(TestCase):
+    """Test for 50x errors"""
+
+    def test_500_error_response(self):
+        request = HttpRequest()
+        response = server_error(request)
+
+        self.assertContains(response, 'Ooops!!! 500', status_code=500)
