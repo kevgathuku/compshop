@@ -204,8 +204,8 @@
 {% endblock %}
 
 {% block footer_links %}
-  <script src="{% bootstrap_jquery_url %}"></script>
-  {% bootstrap_javascript %}
+  <script src="{% static "js/jquery.js" %}"></script>
+  <script src="{% static "js/bootstrap.js" %}"></script>
   <script src="{% static "js/jquery.validate.min.js" %}"></script>
   <script src="{% static "js/jquery.blImageCenter.js" %}"></script>
   <script src="{% static "js/bootstrap.touchspin.js" %}"></script>
@@ -218,4 +218,5 @@
   </script>
   <!-- Go to www.addthis.com/dashboard to customize your tools -->
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5488a5574bfa1f37" async="async"></script>
+
 {% endblock footer_links %}
