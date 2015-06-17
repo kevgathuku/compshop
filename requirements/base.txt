@@ -7,6 +7,6 @@ django-s3-storage==0.9.0
 django-taggit==0.14.0
 djrill==1.4.0
 ipython==3.1.0
-Pillow==2.8.1
+Pillow==2.8.2
 psycopg2==2.6.1
 pytz==2015.4
