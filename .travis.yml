@@ -17,12 +17,3 @@ before_script:
 script:
 - make test
 after_success: coveralls
-deploy:
-  provider: heroku
-  api_key:
-    secure: ngDA1ESWauXycQAUoIEqwh4nztCfpNHlarK2En4oppg/YOv3bSECPd5JI+UXe07PhIiXkWRKvWbae3qzwCbta4PismdgxXZB0eSuaFjUiz8M7bjBfQwJg7DospNXTvurXvYIMpKculzDDr0HzdH4yWbfYp55lIfMyT5BPMVWzEY=
-  app: comptronics
-  on:
-    repo: kevgathuku/compshop
-    branch: develop
-  run: python manage.py migrate
