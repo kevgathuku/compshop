@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% load humanize static store_extras %}
+{% load compress humanize static store_extras %}
 
 {% block title %} {{object.name}} {% endblock %}
 
 {% block head_css %}
-	{{ block.super }} 
-	<link href="{% static "css/star-rating.min.css" %}" media="all" rel="stylesheet" type="text/css" />
+  {{ block.super }} 
+  {% compress css %}
+  	<link href="{% static "css/star-rating.min.css" %}" media="all" rel="stylesheet" type="text/css" />
+  {% endcompress %}
 {% endblock %}
 
 {% block content %}
@@ -201,19 +203,19 @@
 {% endblock %}
 
 {% block footer_links %}
-  <script src="{% static "js/jquery.js" %}"></script>
-  <script src="{% static "js/bootstrap.js" %}"></script>
-  <script src="{% static "js/jquery.validate.min.js" %}"></script>
-  <script src="{% static "js/jquery.blImageCenter.min.js" %}"></script>
-  <script src="{% static "js/bootstrap.touchspin.js" %}"></script>
-  <script src="{% static "js/jquery.zoom.min.js" %}"></script>
-  <script src="{% static "js/mimity.js" %}"></script>
-  <script src="{% static "js/scripts.js" %}"></script>
-  <script src="{% static "js/star-rating.min.js" %}" type="text/javascript"></script>
-  <script type="text/javascript">
-  	$("#id-rating").rating();
-  </script>
-  <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="https://w.sharethis.com/button/buttons.js"></script>
-  <script type="text/javascript">stLight.options({publisher: "d5314c89-c89f-4d5d-ae69-f00924c66932", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+  {% compress js %}
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/jquery.validate.min.js" %}"></script>
+    <script src="{% static "js/jquery.blImageCenter.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.touchspin.js" %}"></script>
+    <script src="{% static "js/jquery.zoom.min.js" %}"></script>
+    <script src="{% static "js/mimity.js" %}"></script>
+    <script src="{% static "js/scripts.js" %}"></script>
+    <script src="{% static "js/star-rating.min.js" %}" type="text/javascript"></script>
+    <script type="text/javascript">$("#id-rating").rating();</script>
+  {% endcompress %}
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="//w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "d5314c89-c89f-4d5d-ae69-f00924c66932", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 {% endblock footer_links %}

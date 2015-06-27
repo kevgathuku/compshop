@@ -1,9 +1,8 @@
 from django.http import Http404, JsonResponse
-from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
 from .forms import ReviewForm
-from .models import Category, Product, Review
+from .models import Category, Product
 
 
 class CategoryDetail(DetailView):
@@ -57,7 +56,7 @@ def product_review(request):
         else:
             response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
             if 'rating' in form.errors:
-               response["reviewRating"] = form.errors['rating'][0]
+                response["reviewRating"] = form.errors['rating'][0]
             if 'name' in form.errors:
                 response["reviewName"] = form.errors['name'][0]
             if 'text' in form.errors:

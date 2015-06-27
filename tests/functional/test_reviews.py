@@ -1,5 +1,3 @@
-from selenium.common.exceptions import NoSuchElementException
-
 from .base import FunctionalTest
 
 from store.tests.factories import *
@@ -78,9 +76,9 @@ class ReviewTest(FunctionalTest):
 
         self.browser.find_element_by_id('id_name').submit()
 
-        # Assert that the form has been replaced with a success message
-        with self.assertRaises(NoSuchElementException):
-            self.browser.find_element_by_id('review-form')
+        # Assert that the form is no longer visible
+        self.wait_for_element_with_id_invisible('review-form')
 
+        # Assert that the success message is displayed
         review_area = self.browser.find_element_by_id('review-area')
         self.assertEqual("Thanks. Your Review has been Posted.", review_area.text)
