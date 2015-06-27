@@ -1,6 +1,6 @@
 -r base.txt
 coverage==3.7.1
-django-libs==1.66.1
+django-libs==1.66.3
 django-nose==1.4
 dj-database-url==0.3.0
 factory-boy==2.5.2

@@ -9,12 +9,15 @@ addons:
   postgresql: '9.4'
 install:
 - pip install -r requirements/testing.txt
+- pip install coveralls
 before_script:
 - psql -c 'create database compshop_test;' -U postgres
 - python manage.py migrate --noinput
 - python manage.py collectstatic --noinput
 script:
 - make test
+after_success:
+  coveralls
 deploy:
   provider: heroku
   api_key:

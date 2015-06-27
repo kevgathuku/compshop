@@ -2,3 +2,7 @@
 
 test:
 	coverage run manage.py test
+
+setup:
+	pip install -r requirements.txt
+	pip install -r requirements/local.txt
