@@ -9,3 +9,4 @@ A product display and advertising website for an online retail computer shop
 Technologies used:
 * [Python 3](https://python.org/)
 * [Django](https://www.djangoproject.com/)
+* [PostgreSQL](http://www.postgresql.org/)
