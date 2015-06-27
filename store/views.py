@@ -1,9 +1,8 @@
 from django.http import Http404, JsonResponse
-from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 
 from .forms import ReviewForm
-from .models import Category, Product, Review
+from .models import Category, Product
 
 
 class CategoryDetail(DetailView):
