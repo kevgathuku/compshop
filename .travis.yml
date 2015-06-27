@@ -20,7 +20,7 @@ after_success: coveralls
 deploy:
   provider: heroku
   api_key:
-    secure: Hftwgw/Pj1v/lO6LG8wP0ROG+85Vebg+8cLlkToUTkNzEjkEJOqpsnC9z/yizsu708BPOUqyc+cxkncGFCHVaUed5ozZZOMcoc0jVGVhO2j15qiPGWhdyxhhsmTpudeWWy3olnrFc3pGI2n/UvryKqkgv988aLTAddmLXjLTkvI=
+    secure: Fp7JgWeZl3mLC+wyClmugKPK5Ih7sDLgsNHf1t35FxZmB0KyKMOPZQeI0VeezWtETJbpVOOJa565mAsiZESrPE7kqxaIWM0USqZf3cijwtw3HSsbABnTnwDBfKySERjPY2DamRwQ/+HAuUhH4RzRVMTk/KDWEWuSKbhmqxAYDXA=
   app: comptronics
   on:
     repo: kevgathuku/compshop
