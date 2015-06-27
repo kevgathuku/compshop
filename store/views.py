@@ -57,7 +57,7 @@ def product_review(request):
         else:
             response = {"reviewRating": "", "reviewName": "", "reviewText": ""}
             if 'rating' in form.errors:
-               response["reviewRating"] = form.errors['rating'][0]
+                response["reviewRating"] = form.errors['rating'][0]
             if 'name' in form.errors:
                 response["reviewName"] = form.errors['name'][0]
             if 'text' in form.errors:
