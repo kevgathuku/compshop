@@ -13,8 +13,13 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import dotenv
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Read env variables from a .env file in the root directory
+dotenv.read_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -25,16 +30,24 @@ DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
 
 THIRD_PARTY_APPS = (
+    'bootstrap3',
     'django_extensions',
-    )
+    'djrill',
+    'taggit',
+)
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
+CUSTOM_APPS = (
+    'store',
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 
 MIDDLEWARE_CLASSES = (
@@ -53,7 +66,7 @@ ROOT_URLCONF = 'compshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -61,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.featured_products',
+                'store.context_processors.product_categories'
             ],
         },
     },
@@ -85,7 +100,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -96,5 +111,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 STATIC_URL = '/static/'
+
+# Where static files are collected
+STATIC_ROOT = 'staticfiles'
+
+# Uploads
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+MEDIA_URL = '/media/'
+
+# Djrill Settings
+MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
+
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+
+DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
