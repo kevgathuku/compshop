@@ -120,8 +120,6 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = True
 
-COMPRESS_OFFLINE = True
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
