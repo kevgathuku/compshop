@@ -16,12 +16,11 @@ before_script:
 - python manage.py collectstatic --noinput
 script:
 - make test
-after_success:
-  coveralls
+after_success: coveralls
 deploy:
   provider: heroku
   api_key:
-    secure: j7AFGEPl1uHAj3cfdw7X51QYxjbU9FZ8fOEOW37KHZtfEC7ZJIpYL9hk4mWW+MV6d4Ztf1yWqAz6Wd4kOi3+Zcy4qb7LDwYHuxoCd5egTd2GiTihD3s4besvQAbU6RKJrnr0nOd7OMKPh29VulXz0fmMEhQBRxJLFkV9B53RIx8=
+    secure: tmC9Ic3GZvrpWymjdTklxuawjMfhGNFpnisgeyt85L0jF7DcqE7Qwkihq1E3282LCWjFVtH//PuUDRHjumavyTg8sD6W3had/xPZH7Yoq5TbbAQxYGnptTImIJelWEC/bMMYPViNotbIUbe2h04O5rqCjJSOa/c56JtotmBqcfI=
   app: comptronics
   on:
     repo: kevgathuku/compshop
