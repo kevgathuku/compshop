@@ -181,7 +181,8 @@
           </div>
         </div>
         <div class="navbar-inverse text-center copyright">
-          Copyright &copy; 2015 Comptronics All right reserved
+          {% now "Y" as current_year %}
+            Copyright &copy; {{ current_year }} Comptronics All right reserved
         </div>
     </footer>
 
