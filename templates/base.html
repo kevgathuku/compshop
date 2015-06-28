@@ -107,7 +107,7 @@
           <div class="no-padding">
               <span class="title">BEST SELLERS</span>
             </div>
-          {% for prod in featured|slice:":4" %}
+          {% for prod in featured|slice:":3" %}
             <div class="hero-feature">
                 <div class="thumbnail text-center">
                   <a href="{{ prod.get_absolute_url }}" class="link-p">
