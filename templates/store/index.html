@@ -74,17 +74,17 @@
             {% endblock %}
           <!-- End Categories -->
 
-        <!-- Best Sellers -->
-          {% block best_sellers %}
-            {{ block.super }}
-          {% endblock %}
-        <!-- End Best Seller -->
+          <!-- Best Sellers -->
+            {% block best_sellers %}
+              {{ block.super }}
+            {% endblock %}
+          <!-- End Best Seller -->
 
           </div>
 
           <div class="clearfix visible-sm"></div>
 
-       <!-- Featured -->
+        <!-- Featured -->
           <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="col-lg-12 col-sm-12">
                 <span class="title">FEATURED PRODUCTS</span>
@@ -111,13 +111,13 @@
             {% endfor %}
 
           </div>
-          <!-- End Featured -->
+        <!-- End Featured -->
 
           <div class="clearfix visible-sm"></div>
 
         <!-- Latest Products -->
           <div class="col-lg-9 col-md-9 col-sm-12">
-            <div class="col-lg-12 col-sm-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <span class="title">LATEST ADDITIONS</span>
               </div>
               {% for prod in latest %}
@@ -139,8 +139,8 @@
                   </div>
                 </div>
             {% endfor %}
-      </div>
-      <!-- End Latest Products -->
+          </div>
+        <!-- End Latest Products -->
 
         </div>
   </div>

@@ -5,7 +5,7 @@ def featured_products(request):
     """
     Returns a context variable containing featured products
     """
-    return {'featured': Product.objects.filter(featured=True)}
+    return {'featured': Product.objects.filter(featured=True)[:9]}
 
 def product_categories(request):
     """
