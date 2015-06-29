@@ -1,8 +1,20 @@
 from django.http import Http404, JsonResponse
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 
 from .forms import ReviewForm
 from .models import Category, Product
+
+
+class AboutView(TemplateView):
+    """This handles the 'About Us' page"""
+
+    template_name = "store/about.html"
+
+
+class ContactView(TemplateView):
+    """This handles the 'Contact Us' page"""
+
+    template_name = "store/contact.html"
 
 
 class CategoryDetail(DetailView):
