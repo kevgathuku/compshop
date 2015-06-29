@@ -145,3 +145,6 @@ DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
 
 # Django Analytical Settings
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
+
+# Track page load times
+GOOGLE_ANALYTICS_SITE_SPEED = True
