@@ -11,6 +11,12 @@ class AboutView(TemplateView):
     template_name = "store/about.html"
 
 
+class ContactView(TemplateView):
+    """This handles the 'Contact Us' page"""
+
+    template_name = "store/contact.html"
+
+
 class CategoryDetail(DetailView):
     model = Category
 

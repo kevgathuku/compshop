@@ -18,12 +18,13 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from store.views import AboutView, CategoryDetail, ProductList
+from store.views import AboutView, CategoryDetail, ContactView, ProductList
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', ProductList.as_view(), name='home'),
     url(r'^about/$', AboutView.as_view(), name='about'),
+    url(r'^contact/$', ContactView.as_view(), name='contact'),
     url(r'^products/', include('store.urls', namespace='products')),
     url(r'^category/(?P<slug>[\w\-]+)/$', CategoryDetail.as_view(), name='category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
