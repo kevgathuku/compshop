@@ -37,6 +37,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'analytical',
     'bootstrap3',
     'compressor',
     'django_extensions',
@@ -109,6 +110,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -140,3 +142,9 @@ MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 
 DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
+
+# Django Analytical Settings
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
+
+# Track page load times
+GOOGLE_ANALYTICS_SITE_SPEED = True
