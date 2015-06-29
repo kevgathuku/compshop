@@ -1,4 +1,4 @@
-{% load compress humanize static bootstrap3 %}<!DOCTYPE html>
+{% load compress google_analytics humanize static bootstrap3 %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -198,7 +198,7 @@
         <script src="{% static "js/mimity.js" %}"></script>
       {% endcompress %}
     {% endblock footer_links %}
-
   {% endblock footer %}
+  {% google_analytics %}
 </body>
 </html>
