@@ -37,6 +37,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'analytical',
     'bootstrap3',
     'compressor',
     'django_extensions',
@@ -141,3 +142,6 @@ MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 
 DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
+
+# Django Analytical Settings
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
