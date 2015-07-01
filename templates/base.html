@@ -1,4 +1,4 @@
-{% load compress google_analytics humanize static bootstrap3 %}<!DOCTYPE html>
+{% load compress google_analytics humanize static bootstrap3 thumbnail %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -111,7 +111,7 @@
             <div class="hero-feature">
                 <div class="thumbnail text-center">
                   <a href="{{ prod.get_absolute_url }}" class="link-p">
-                      <img src="{{prod.images.first.photo.url}}" alt="{{prod.name}}">
+                      <img src="{{prod.images.first.photo|thumbnail_url:'feature'}}" alt="{{prod.name}}">
                   </a>
                     <div class="caption prod-caption">
                         <h4><a href="{{ prod.get_absolute_url }}">{{prod.name}}</a></h4>
