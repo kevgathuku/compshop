@@ -48,3 +48,7 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
 # The S3 bucket used to store uploaded files.
 AWS_S3_BUCKET_NAME = os.environ['S3_BUCKET']
+
+# Define Storage For Thumbnails
+# Use same storage as the one defined for production
+THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
