@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = (
     'compressor',
     'django_extensions',
     'djrill',
+    'easy_thumbnails',
     'taggit',
 )
 
