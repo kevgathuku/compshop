@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load humanize static %}
+{% load humanize static thumbnail %}
 
 {% block title %} Home {% endblock %}
 
@@ -45,7 +45,7 @@
                 <div class="col-lg-12 col-md-12 hero-feature">
                     <div class="thumbnail">
                       <a href="{{ prod.get_absolute_url }}" class="link-p first-p">
-                      <img src="{{prod.images.first.photo.url}}" alt="{{prod.name}}">
+                      <img src="{{prod.images.first.photo|thumbnail_url:'top'}}" alt="{{prod.name}}">
                     </a>
                     <div class="caption prod-caption">
                         <h4><a href="{{ prod.get_absolute_url }}">{{prod.name}}</a></h4>
@@ -94,7 +94,7 @@
               <div class="col-lg-4 col-sm-4 hero-feature text-center">
                 <div class="thumbnail">
                   <a href="{{ product.get_absolute_url }}" class="link-p">
-                      <img src="{{ product.images.first.photo.url }}" alt="{{product.name}}">
+                      <img src="{{ product.images.first.photo|thumbnail_url:'feature' }}" alt="{{product.name}}">
                   </a>
                     <div class="caption prod-caption">
                       <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
@@ -123,7 +123,7 @@
                 <div class="col-lg-4 col-sm-4 hero-feature text-center">
                   <div class="thumbnail">
                     <a href="{{prod.get_absolute_url}}" class="link-p">
-                      <img src="{{prod.images.first.photo.url}}" alt="{{prod.name}}">
+                      <img src="{{prod.images.first.photo|thumbnail_url:'feature'}}" alt="{{prod.name}}">
                     </a>
                       <div class="caption prod-caption">
                         <h4><a href="{{prod.get_absolute_url}}">{{prod.name}}</a></h4>
