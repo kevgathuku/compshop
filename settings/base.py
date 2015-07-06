@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import dj_database_url
 import dotenv
 
 
@@ -37,9 +38,12 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'analytical',
     'bootstrap3',
+    'compressor',
     'django_extensions',
     'djrill',
+    'easy_thumbnails',
     'taggit',
 )
 
@@ -86,12 +90,8 @@ WSGI_APPLICATION = 'compshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config()
 }
 
 
@@ -108,9 +108,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = True
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -131,3 +140,23 @@ MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 
 DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
+
+# Django Analytical Settings
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
+
+# Track page load times
+GOOGLE_ANALYTICS_SITE_SPEED = True
+
+# Thumbnailer Settings
+THUMBNAIL_DEFAULT_OPTIONS = {'crop': 'smart'}
+
+THUMBNAIL_DEBUG = True
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'top': {'size': (250, 172)},
+        'feature': {'size': (250, 250)},
+    },
+}
+
+THUMBNAIL_SUBDIR = 'thumbs'

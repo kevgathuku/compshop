@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+  <div class="container main-container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1>About Us</h1>
+
+        <p>
+          Comptronics is the leading online computer and computer accessories shop in Kenya
+        </p>
+        <p>
+          We offer the best prices on the market and make deliveries of our product in Nairobi
+          and its environs.
+        </p>
+        <p>
+          Please send us a message via our <a href="{% url 'contact' %}"> Contact Page </a> for any queries, quotes or feedback.
+        </p>
+        <p>
+          We look forward to serving you.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

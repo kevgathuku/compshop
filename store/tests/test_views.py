@@ -3,8 +3,32 @@ from django.http import HttpRequest
 from django.test import TestCase
 from django.views.defaults import server_error
 
-from store.views import CategoryDetail, ProductDetail, product_review
+from store.views import (AboutView, CategoryDetail, ContactView, ProductDetail,
+                         product_review)
 from .factories import *
+
+
+class AboutViewTest(TestCase):
+    """Tests for the About View"""
+
+    def test_about_url_resolves_to_correct_view(self):
+        response = resolve(reverse('about'))
+
+        self.assertEqual(
+            response.func.__name__,
+            AboutView.as_view().__name__)
+
+
+class ContactViewTest(TestCase):
+    """Tests for the Contact View"""
+
+    def test_about_url_resolves_to_correct_view(self):
+        response = resolve(reverse('contact'))
+
+        self.assertEqual(
+            response.func.__name__,
+            ContactView.as_view().__name__)
+
 
 class CategoryTest(TestCase):
     """Basic Category Tests"""

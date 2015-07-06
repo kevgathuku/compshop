@@ -1,4 +1,5 @@
 language: python
+sudo: false
 services:
 - postgresql
 env:
@@ -16,14 +17,13 @@ before_script:
 - python manage.py collectstatic --noinput
 script:
 - make test
-after_success:
-  coveralls
+after_success: coveralls
 deploy:
   provider: heroku
   api_key:
-    secure: j7AFGEPl1uHAj3cfdw7X51QYxjbU9FZ8fOEOW37KHZtfEC7ZJIpYL9hk4mWW+MV6d4Ztf1yWqAz6Wd4kOi3+Zcy4qb7LDwYHuxoCd5egTd2GiTihD3s4besvQAbU6RKJrnr0nOd7OMKPh29VulXz0fmMEhQBRxJLFkV9B53RIx8=
+    secure: iM5BgJnvTkpsskVVyVZDiiYF2zhjTZv5o3Lkai755pMrvaCgcwvrMswQbE2Xm7GZw4ZIAaJGgydd85ZSjn3Q/5XfMAy/otiPDMdoK4xLPHjz+w08juIW84K2Xok+jQ4b21PaTz8uJdKfbu6ChUm49mnq0lffV8Igi4BJGWFoTzLbPEIRnU4imcDT3RnRuvH7MnHJc1HUqJXNjEJwA/vzQ5qXJ1X9ee+akpkPJx/7hmchapq0PclpPC8VNPMsC/ywCNxZ/XLIu+4KsC7h8Chj/oLRWhTM7SC/Vm0rOMjPcMR924tQUDgqNxUu82ettGaNJWWfcJBUJTC60Js+bMNptWeglmkZjZWCQUQa5iX6yNGp8xs6RrRqX92u/dIrmpfE/6XQ2TfS+0s61NreckWnEGD+7v7AQy0miNQITKySwuFIxChOUiqrqcV6rUFD28N4uF0Lak5qDS0XeRQNjkxeLJsiJ+bcl1mLoME/rBULFnONctGee4ltr0hlJ3ePJo5cQUqkeVgZl13wa/FTfx/rZ2pXU9PtUpHl44UDjQKBPZWPUeTFoWHBdVfyWALVsu6Xv4KxtwD2bojZ8WwiZkzoJ3WxDP5Oz6+HZ1bdu1jycpx5PNUYOl6ueD3hvJXGkIVKnkCCerVP05WcyvR6YCxOyeYeTHP9yLoUPG5V+i5bUy4=
   app: comptronics
   on:
     repo: kevgathuku/compshop
     branch: develop
-  run: "python manage.py migrate"
+  run: python manage.py migrate
