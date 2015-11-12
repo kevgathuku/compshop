@@ -139,7 +139,7 @@ MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 
-DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@gmail.com"
+DEFAULT_FROM_EMAIL = "<Comptronics> comptronicsltd@gmail.com"
 
 # Django Analytical Settings
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
