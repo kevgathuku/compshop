@@ -66,7 +66,11 @@ class Image(models.Model):
     product = models.ManyToManyField(Product, related_name='images')
 
     def __str__(self):
-        return self.photo.public_id
+        try:
+            public_id = self.photo.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.title, public_id)
 
 
 class Review(models.Model):
