@@ -67,3 +67,6 @@ uploads/
 
 # Collected Static Files
 staticfiles/
+
+.DS_Store
+.env
