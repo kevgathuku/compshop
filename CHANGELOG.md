@@ -9,3 +9,7 @@
 * Add Sharethis to product detail page
 * Add Google Analytics
 * Generate and display thumbnails on the homepage
+
+## v0.3
+
+* Replace Amazon S3 with Cloudinary for Image Storage
