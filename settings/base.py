@@ -43,7 +43,6 @@ THIRD_PARTY_APPS = (
     'compressor',
     'django_extensions',
     'djrill',
-    'easy_thumbnails',
     'taggit',
 )
 
@@ -146,17 +145,3 @@ GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
 
 # Track page load times
 GOOGLE_ANALYTICS_SITE_SPEED = True
-
-# Thumbnailer Settings
-THUMBNAIL_DEFAULT_OPTIONS = {'crop': 'smart'}
-
-THUMBNAIL_DEBUG = True
-
-THUMBNAIL_ALIASES = {
-    '': {
-        'top': {'size': (250, 172)},
-        'feature': {'size': (250, 250)},
-    },
-}
-
-THUMBNAIL_SUBDIR = 'thumbs'
