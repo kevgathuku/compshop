@@ -60,11 +60,13 @@ class Specification(models.Model):
 class Image(models.Model):
     """Represents an Image associated with the Product"""
 
+    title = models.CharField("Image Name (optional)",
+                             max_length=200, blank=True)
     photo = CloudinaryField('photo')
     product = models.ManyToManyField(Product, related_name='images')
 
     def __str__(self):
-        return self.image.public_id
+        return self.photo.public_id
 
 
 class Review(models.Model):
