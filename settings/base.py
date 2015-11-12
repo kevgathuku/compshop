@@ -40,6 +40,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'analytical',
     'bootstrap3',
+    'cloudinary',
     'compressor',
     'django_extensions',
     'djrill',
