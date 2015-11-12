@@ -1,3 +1,5 @@
+from cloudinary.models import CloudinaryField
+
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -58,11 +60,17 @@ class Specification(models.Model):
 class Image(models.Model):
     """Represents an Image associated with the Product"""
 
-    photo = models.ImageField(upload_to='%Y-%m-%d/')
+    title = models.CharField("Image Name (optional)",
+                             max_length=200, blank=True)
+    photo = CloudinaryField('photo')
     product = models.ManyToManyField(Product, related_name='images')
 
     def __str__(self):
-        return self.photo.name
+        try:
+            public_id = self.photo.public_id
+        except AttributeError:
+            public_id = ''
+        return "Photo <%s:%s>" % (self.title, public_id)
 
 
 class Review(models.Model):
@@ -77,7 +85,8 @@ class Review(models.Model):
     )
 
     name = models.CharField(max_length=30, blank=True, default='Anonymous')
-    rating = models.PositiveSmallIntegerField(choices=RATINGS_CHOICES, blank=False)
+    rating = models.PositiveSmallIntegerField(
+        choices=RATINGS_CHOICES, blank=False)
     text = models.TextField()
     product = models.ForeignKey(Product, related_name='reviews')
 
