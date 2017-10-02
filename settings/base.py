@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'compshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': dj_database_url.config() or dj_database_url.parse('postgres://kevin:@localhost:5432/compshop')
 }
 
 
@@ -134,13 +134,6 @@ STATIC_ROOT = 'staticfiles'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 MEDIA_URL = '/media/'
-
-# Djrill Settings
-MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
-
-EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
-
-DEFAULT_FROM_EMAIL = "<Comptronics> comptronicsltd@gmail.com"
 
 # Django Analytical Settings
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
