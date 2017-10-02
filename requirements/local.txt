@@ -1,4 +1,10 @@
--r testing.txt
+-r base.txt
 django-debug-toolbar==1.8
 django-seed==0.1.4
 prospector==0.10.2
+coverage==4.0.2
+django-libs==1.66.12
+django-nose==1.4.2
+dj-database-url==0.3.0
+factory-boy==2.9.2
+selenium==2.52.0
