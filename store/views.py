@@ -35,10 +35,6 @@ class ProductCatalogue(ListView):
     model = Product
     template_name = 'store/catalogue.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(ProductCatalogue, self).get_context_data(**kwargs)
-        return context
-
 
 class ProductDetail(DetailView):
     model = Product
