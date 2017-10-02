@@ -28,3 +28,9 @@ urlpatterns = [
     url(r'^products/', include('store.urls', namespace='products')),
     url(r'^category/(?P<slug>[\w\-]+)/$', CategoryDetail.as_view(), name='category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
