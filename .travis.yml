@@ -5,7 +5,7 @@ services:
 env:
 - DATABASE_URL='postgres://postgres:@localhost:5432/compshop_test' DJANGO_SETTINGS_MODULE='settings.test'
 python:
-- '3.4'
+- '3.6'
 addons:
   postgresql: '9.4'
 install:
