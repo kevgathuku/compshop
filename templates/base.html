@@ -1,4 +1,5 @@
-{% load compress google_analytics humanize static bootstrap3 cloudinary %}<!DOCTYPE html>
+{% if load_analytics %} {% load google_analytics %} {% endif %}
+{% load compress humanize static bootstrap3 cloudinary %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -199,6 +200,8 @@
       {% endcompress %}
     {% endblock footer_links %}
   {% endblock footer %}
-  {% google_analytics %}
+  {% if load_analytics %}
+    {% google_analytics %}
+  {% endif %}
 </body>
 </html>
