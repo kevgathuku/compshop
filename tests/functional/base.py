@@ -1,6 +1,7 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,8 +9,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
-        self.browser = webdriver.PhantomJS()
-        # Wait up tp 10 seconds for an element to appear
+
+        # Options class instance allows configuring Headless Chrome
+        options = Options()
+        options.headless = True
+        self.browser = webdriver.Chrome(options=options)
+        # Wait up to 5 seconds for an element to appear
         self.browser.implicitly_wait(5)
 
     def tearDown(self):

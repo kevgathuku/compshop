@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==1.11.29"
+cloudinary = "==1.29.0"
+django-autoslug = "==1.9.3"
+django-bootstrap3 = "==11.1.0"
+django-compressor = "==2.2"
+django-dotenv = "==1.3.0"
+django-extensions = "==1.5.9"
+django-taggit = "==0.22.2"
+ipython = "==7.16.3"
+pillow = "==9.0.1"
+psycopg2 = "==2.9.3"
+pytz = "==2015.7"
+django-toolbelt = "==0.0.1"
+whitenoise = "==2.0.4"
+
+[dev-packages]
+django-debug-toolbar = "==1.11.1"
+prospector= "==0.10.2"
+coverage= "==4.0.2"
+django-libs= "==1.66.12"
+django-nose= "==1.4.2"
+dj-database-url= "==0.3.0"
+factory-boy= "==2.9.2"
+selenium= "==4.3.0"
+
+[requires]
+python_version = "3.9"

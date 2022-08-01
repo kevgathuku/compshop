@@ -17,10 +17,10 @@ COMPRESS_OFFLINE = True
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-SERVER_EMAIL = "<Comptronics Error> kevgathuku@gmail.com"
+SERVER_EMAIL = "<Comptronics Error> kevgathuku@users.noreply.github.com "
 
 ADMINS = (
-    ("Kevin Ndung'u", 'kevgathuku@gmail.com'),
+    ("Kevin Ndung'u", 'kevgathuku@users.noreply.github.com '),
 )
 
 MANAGERS = ADMINS
@@ -31,9 +31,4 @@ DATABASES['default'] = dj_database_url.config()
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-# Djrill Settings
-MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
-
-EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
-
-DEFAULT_FROM_EMAIL = "<Comptronics> comptronicsltd@gmail.com"
+DEFAULT_FROM_EMAIL = "<Comptronics> kevgathuku@users.noreply.github.com "
