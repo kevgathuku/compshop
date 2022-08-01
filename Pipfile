@@ -22,7 +22,6 @@ whitenoise = "==2.0.4"
 
 [dev-packages]
 django-debug-toolbar = "==1.11.1"
-django-seed= "==0.1.4"
 prospector= "==0.10.2"
 coverage= "==4.0.2"
 django-libs= "==1.66.12"
