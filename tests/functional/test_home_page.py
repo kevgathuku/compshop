@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 from store.tests.factories import CategoryFactory, ProductFactory
 from .base import FunctionalTest
 
@@ -17,7 +19,7 @@ class HomePageTest(FunctionalTest):
 
         self.browser.get(self.live_server_url)
 
-        menu = self.browser.find_element_by_id('main_menu')
+        menu = self.browser.find_element(By.ID, 'main_menu')
 
         self.assertIn(
             cat1.name,
@@ -36,7 +38,7 @@ class HomePageTest(FunctionalTest):
 
             self.browser.get(self.live_server_url)
 
-            menu = self.browser.find_element_by_tag_name('footer')
+            menu = self.browser.find_element(By.TAG_NAME, 'footer')
 
             self.assertIn(
                 cat1.name,
@@ -47,19 +49,18 @@ class HomePageTest(FunctionalTest):
                 menu.text,
                 "Categories without products should not be visible in the footer")
 
-
     def test_navbar_links(self):
         self.browser.get(self.live_server_url)
 
         self.browser.set_window_size(1024, 768)
 
-        homepage_link = self.browser.find_element_by_link_text('HOME')
+        homepage_link = self.browser.find_element(By.LINK_TEXT, 'HOME')
 
         homepage_link.click()
         # Assert that the Homepage link works
         self.assertIn("Home", self.browser.title)
 
-        catalogue_link = self.browser.find_element_by_link_text('CATALOGUE')
+        catalogue_link = self.browser.find_element(By.LINK_TEXT, 'CATALOGUE')
 
         catalogue_link.click()
         # Assert that the catalogue link works
