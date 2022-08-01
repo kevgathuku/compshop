@@ -9,6 +9,8 @@ SECRET_KEY = 'CHANGE THIS!!!'
 
 INSTALLED_APPS += ('debug_toolbar',)
 
+MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
