@@ -9,8 +9,7 @@ python:
 addons:
   postgresql: '9.4'
 install:
-- pip install -r requirements/local.txt
-- pip install coveralls
+- pipenv install -d
 before_script:
 - psql -c 'create database compshop_test;' -U postgres
 - python manage.py migrate --noinput
