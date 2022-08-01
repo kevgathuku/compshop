@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "de9aa0f6aec0ad4f51e791d8212c0e1efd974e15b0e7bf0f0913a86084103abd"
+            "sha256": "62e154abc922d79742e404a2e0b2961730946d31fba9dc5568cdd7349ae9229b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -100,11 +100,11 @@
         },
         "django-compressor": {
             "hashes": [
-                "sha256:0189fd1dbf87d802f4e4e21ebc9220f29bbb7771b252a958ad6119f61453e22e",
-                "sha256:516866224ec33bf227f79718c0b154debf2967fe249c12d721bbe2c45ecbe34c"
+                "sha256:7732676cfb9d58498dfb522b036f75f3f253f72ea1345ac036434fdc418c2e57",
+                "sha256:9616570e5b08e92fa9eadc7a1b1b49639cce07ef392fc27c74230ab08075b30f"
             ],
             "index": "pypi",
-            "version": "==1.5"
+            "version": "==2.2"
         },
         "django-dotenv": {
             "hashes": [
@@ -283,6 +283,18 @@
             ],
             "index": "pypi",
             "version": "==2015.7"
+        },
+        "rcssmin": {
+            "hashes": [
+                "sha256:ca87b695d3d7864157773a61263e5abb96006e9ff0e021eff90cbe0e1ba18270"
+            ],
+            "version": "==1.0.6"
+        },
+        "rjsmin": {
+            "hashes": [
+                "sha256:dd9591aa73500b08b7db24367f8d32c6470021f39d5ab4e50c7c02e4401386f1"
+            ],
+            "version": "==1.0.12"
         },
         "setuptools": {
             "hashes": [
