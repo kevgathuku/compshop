@@ -43,7 +43,6 @@ THIRD_PARTY_APPS = (
     'cloudinary',
     'compressor',
     'django_extensions',
-    'djrill',
     'taggit',
 )
 
