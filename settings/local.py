@@ -9,6 +9,13 @@ SECRET_KEY = 'CHANGE THIS!!!'
 
 INSTALLED_APPS += ('debug_toolbar',)
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
 # Make debug_toolbar rely on the version of jQuery that already exists
 # Don't load external jquery
 DEBUG_TOOLBAR_CONFIG = {
