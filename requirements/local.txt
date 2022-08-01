@@ -1,5 +1,5 @@
 -r base.txt
-django-debug-toolbar==1.8
+django-debug-toolbar==1.11.1
 django-seed==0.1.4
 prospector==0.10.2
 coverage==4.0.2
