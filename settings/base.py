@@ -38,7 +38,6 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    'analytical',
     'bootstrap3',
     'cloudinary',
     'compressor',
@@ -93,7 +92,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.featured_products',
                 'store.context_processors.product_categories',
-                'store.context_processors.load_analytics'
             ],
         },
     },
@@ -147,9 +145,3 @@ STATIC_ROOT = 'staticfiles'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 MEDIA_URL = '/media/'
-
-# Django Analytical Settings
-GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-64601537-1'
-
-# Track page load times
-GOOGLE_ANALYTICS_SITE_SPEED = True
